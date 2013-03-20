@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void Plotter::plot (const std::vector<Share_t>& shares)
+void Plotter::plot (const std::vector<share_t>& shares)
 {
 	float values[30];
 	float biggest = 0.0f;
