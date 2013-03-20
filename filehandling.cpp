@@ -1,4 +1,5 @@
 #include "filehandling.hpp"
+#include "parser.hpp"
 
 file_handling::file_handling (
 	const std::string& file_name, 
