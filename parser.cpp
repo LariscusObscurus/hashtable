@@ -1,5 +1,4 @@
 #include "parser.hpp"
-#include <sstream>
 
 parser::parser(const std::string& input) 
 {
@@ -36,31 +35,31 @@ std::vector<share_t> parser::parse_csv(const std::string& name, const std::strin
 		for (int i = 0; i <= 9; i++) {
 			switch(i){
 			case 0:
-				imp_share[j].date.year = token[j * 9 + i];
+				imp_share[j].date.year = str_to_int(tokens[j * 9 + i]);
 				break;
 			case 1:
-				imp_share[j].date.month = token[j * 9 + i];
+				imp_share[j].date.month = str_to_int(tokens[j * 9 + i]);
 				break;
 			case 2:
-				imp_share[j].date.day = token[j * 9 + i];
+				imp_share[j].date.day = str_to_int(tokens[j * 9 + i]);
 				break;
 			case 3:
-				imp_share[j].open = token[j * 9 +i];
+				imp_share[j].open = str_to_flt(tokens[j * 9 +i]);
 				break;
 			case 4:
-				imp_share[j].high = token[j * 9 +i];
+				imp_share[j].high = str_to_flt(tokens[j * 9 +i]);
 				break;
 			case 5:
-				imp_share[j].low = token[j * 9 +i];
+				imp_share[j].low = str_to_flt(tokens[j * 9 +i]);
 				break;
 			case 6:
-				imp_share[j].close = token[j * 9 +i];
+				imp_share[j].close = str_to_flt(tokens[j * 9 +i]);
 				break;
 			case 7:
-				imp_share[j].volume = token[j * 9 +i];
+				imp_share[j].volume = str_to_flt(tokens[j * 9 +i]);
 				break;
 			case 8:
-				imp_share[j].adjClose = token[j * 9 +i];
+				imp_share[j].adjClose = str_to_flt(tokens[j * 9 +i]);
 				break;
 			}
 		}
@@ -74,4 +73,20 @@ std::vector<std::string> parser::split (const std::string& str, const std::strin
 	using namespace std;
 	stringstream ss(str);
 	string item;
+}
+
+int str_to_int (std::string str) 
+{
+	int result;
+	std:stringstream sstr(str);
+	sstr >> result;
+	return result;
+}
+
+float str_to_int (std::string str) 
+{
+	float result;
+	std:stringstream sstr(str);
+	sstr >> result;
+	return result;
 }
