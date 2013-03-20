@@ -27,7 +27,7 @@ std::vector<share_t> parser::parse_csv(const std::string& name, const std::strin
 	
 	imp_share = std::vector<share_t>(tokens.size() / 9);
 	
-	for (int j = 0; j < (tokens.size() / 9); j++) {
+	for (unsigned j = 0; j < (tokens.size() / 9); j++) {
 		
 		imp_share[j].name = name;
 		imp_share[j].cont = cont;
@@ -68,25 +68,24 @@ std::vector<share_t> parser::parse_csv(const std::string& name, const std::strin
 	return imp_share;
 }
 
-std::vector<std::string> parser::split (const std::string& str, const std::string& del)
+/*std::vector<std::string> parser::split (const std::string& str, const std::string& del)
 {
-	using namespace std;
-	stringstream ss(str);
-	string item;
-}
+	std::stringstream ss(str);
+	std::string item;
+}*/
 
-int str_to_int (std::string str) 
+int str_to_int (const std::string& str) 
 {
 	int result;
-	std:stringstream sstr(str);
+	std::stringstream sstr(str);
 	sstr >> result;
 	return result;
 }
 
-float str_to_int (std::string str) 
+float str_to_flt (const std::string& str) 
 {
 	float result;
-	std:stringstream sstr(str);
+	std::stringstream sstr(str);
 	sstr >> result;
 	return result;
 }
