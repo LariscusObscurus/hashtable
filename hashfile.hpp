@@ -1,11 +1,16 @@
 #ifndef HASHFILE_HPP
 #define HASHFILE_HPP
 
-#include "file.hpp"
+#include <cstdio>
+#include <vector>
+#include <string>
+
+typedef char byte;
+typedef unsigned char ubyte;
+typedef unsigned long ulong;
 
 class HashFile
 {
-	File mFile;
 public:
 	explicit HashFile (const std::string& fileName, const std::string& mode);
 	virtual ~HashFile (void);

@@ -13,7 +13,6 @@ class hashtable {
 	}
 	
 	const unsigned size;
-	std::vector<node> hsh_vector; /*1201 Primzahl*/
 	std::vector<node> hsh_vector; /*1621 Primzahl*/
 	std::vector<size_t> hsh_name; 
 public:

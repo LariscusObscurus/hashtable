@@ -10,7 +10,7 @@ File::~File (void)
 	fclose(mFile);
 }
 
-long File::read (std::vector<ubyte>& buffer)
+long File::read (std::vector<byte>& buffer)
 {
 	if (!mFile)
 	{
@@ -20,14 +20,35 @@ long File::read (std::vector<ubyte>& buffer)
 	return (long) fread(buf, 1, buffer.max_size(), mFile);
 }
 
-long File::write (const std::vector<ubyte>& buffer)
+long File::read (std::vector<byte>& buffer, ulong count)
+{
+	if (!mFile)
+	{
+		return ERROR_READING;
+	}
+	buffer = std::vector<byte>(count);
+	void* buf = (void*)&buffer[0];
+	return (long) fread(buf, 1, (size_t)count, mFile);
+}
+
+long File::write (const std::vector<byte>& buffer)
 {
 	if (!mFile)
 	{
 		return ERROR_WRITING;
 	}
 	const void* buf = (const void*)&buffer[0];
-	return (long) fwrite(buf, 1, buffer..max_size(), mFile);
+	return (long) fwrite(buf, 1, buffer.max_size(), mFile);
+}
+
+long write (const std::vector<byte>& buffer, ulong count)
+{
+	if (!mFile)
+	{
+		return ERROR_WRITING;
+	}
+	const void* buf = (const void*)&buffer[0];
+	return (long) fwrite(buf, 1, count, mFile);
 }
 
 long File::seek (long offset, int origin)
