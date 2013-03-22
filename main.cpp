@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int main(int argc, const char *argv[])
+int main (void)
 {
 	menu();
 	return 0;
