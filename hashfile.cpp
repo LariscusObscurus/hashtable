@@ -100,7 +100,7 @@ bool HashFile::load (const std::string& fileName, hashtable& table)
 		// add to ref hash table
 		refTable[key] = (size_t)(Hash(shares[0].cont) % hashtable.size);
 	}
-	
+	return true;
 }
 
 bool HashFile::save (const std::string& fileName, const hashtable& table)
