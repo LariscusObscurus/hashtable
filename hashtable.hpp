@@ -14,7 +14,7 @@ class hashtable {
 	
 	const unsigned size;
 	std::vector<node> hsh_vector; /*1201 Primzahl*/
-	//std::vector<node&> hsh_vector; /* reference to node "check & operator"*/
+	//std::vector<node&> hsh_vector; /* reference to node "check & operator" */
 public:
 	hashtable (void);
 	~hashtable ();
