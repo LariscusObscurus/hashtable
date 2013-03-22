@@ -10,8 +10,8 @@ public:
 	explicit HashFile (const std::string& fileName, const std::string& mode);
 	virtual ~HashFile (void);
 	
-	virtual void load (const std::string& fileName, hashtable& table);
-	virtual void save (const std::string& fileName, const hashtable& table);
+	virtual bool load (const std::string& fileName, hashtable& table);
+	virtual bool save (const std::string& fileName, const hashtable& table);
 private:
 };
 

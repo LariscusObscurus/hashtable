@@ -22,6 +22,7 @@ public:
 	virtual long write (const std::vector<ubyte>& buffer);
 	virtual long seek (long offset, int origin);
 	virtual long size (void);
+	virtual inline bool isOpen (void) { return !mFile; }
 private:
 };
 
