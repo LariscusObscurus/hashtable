@@ -16,7 +16,7 @@ public:
 	std::vector<share_t> parse_csv(const std::string& name, const std::string& cont);
 private:
 	std::vector<std::string> split (const std::string& str, const std::string& del);
-	int str_to_int (std::string str);
-	float str_to_flt (std::string str);
+	int str_to_int (const std::string& str);
+	float str_to_flt (const std::string& str);
 };
 #endif
