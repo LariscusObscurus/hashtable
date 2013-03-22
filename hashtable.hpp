@@ -32,6 +32,7 @@ public:
 private:
 	bool n_add(std::string name, unsigned value);
 	bool n_del(std::string name, unsigned value);
+	void n_check_other(unsigned pos, unsigned counter, unsigned iterator);
 	unsigned collision(unsigned old_pos, unsigned &counter);
 	unsigned square(unsigned num);
 	void check_other(unsigned pos, unsigned counter, unsigned iterator);
