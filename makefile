@@ -6,7 +6,7 @@ LFLAGS =
 VERSION = 0.1
 ARCHIVE = $(NAME)-$(VERSION)
 
-SRC = filehandling.cpp parser.cpp plotter.cpp main.cpp menu.cpp hashtable.cpp 
+SRC = filehandling.cpp parser.cpp plotter.cpp main.cpp menu.cpp hashtable.cpp share.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(SRC) $(NAME)
