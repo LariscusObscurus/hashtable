@@ -18,9 +18,10 @@ public:
 	explicit File (const std::string& fileName, const std::string& mode);
 	virtual ~File (void);
 	
-	virtual ulong read (std::vector<ubyte>& buffer);
-	virtual ulong write (const std::vector<ubyte>& buffer);
+	virtual long read (std::vector<ubyte>& buffer);
+	virtual long write (const std::vector<ubyte>& buffer);
 	virtual long seek (long offset, int origin);
+	virtual long size (void);
 private:
 };
 
