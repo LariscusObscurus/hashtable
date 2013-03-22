@@ -30,12 +30,12 @@ public:
 	~hashtable ();
 
 	bool add(std::vector<share_t> hsh_val);
-	bool del(std::string in, omode_t mode);
-	int find(std::string in, std::vector<share_t> &result, omode_t mode);
+	bool del(const std::string& in, omode_t mode);
+	int find(const std::string& in, std::vector<share_t> &result, omode_t mode);
 
 private:
-	bool n_add(std::string name, unsigned value);
-	bool n_del(std::string name, unsigned value);
+	bool n_add(const std::string& name, unsigned value);
+	bool n_del(const std::string& name, unsigned value);
 	void n_check_other(unsigned pos, unsigned counter, unsigned iterator);
 
 	unsigned collision(unsigned old_pos, unsigned &counter);
