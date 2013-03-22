@@ -30,7 +30,7 @@ public:
 	~hashtable ();
 
 	bool add(std::vector<share_t> hsh_val);
-	bool del(std::string hsh_cont);
+	bool del(std::string in, omode_t mode);
 	int find(std::string in, std::vector<share_t> &result, omode_t mode);
 
 private:
