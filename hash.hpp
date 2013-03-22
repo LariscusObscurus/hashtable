@@ -16,6 +16,8 @@ public:
 		{
 			result += (unsigned)(str[i] * pow(13.0f, (float)(n-i)));
 		}
+		
+		return result;
 	}
 };
 

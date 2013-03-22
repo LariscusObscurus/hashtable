@@ -14,7 +14,7 @@ void Plotter::plot (const std::vector<share_t>& shares)
 	char drawArea[height * width];
 	memset((void*)&drawArea[0], ' ', height * width * sizeof(char));
 	
-	for (register int i = shares.size(); i >= 0; i--)
+	for (register int i = (int)shares.size(); i >= 0; i--)
 	{
 		if (biggest < shares[i].close)
 		{
@@ -32,16 +32,20 @@ void Plotter::plot (const std::vector<share_t>& shares)
 		int position = (int)(newVal / difference);
 		drawArea[i * width + position] = '*';
 	}
-	draw(shares[0].name, &drawArea[0]);
+	draw(shares[0].name, &values[0], &drawArea[0], width, height);
 }
 
-void Plotter::draw (const std::string& name, const char* drawArea)
+void Plotter::draw (const std::string& name, const float* values, const char* drawArea, const int width, const int height)
 {
 	printf("%s - shares\n", name.c_str());
 	for (register int i = 0; i < height; i++)
 	{
-		printf("%f.1 |");
-		printf("%30s\n", values[i], drawArea[i * width]);
+		printf("%f.1 |", values[i]);
+		for (register int j = 0; j < width; j++)
+		{
+			printf("%c", drawArea[i * width + j]);
+		}
+		printf("\n");
 	}
 	printf("+------------------------------\n");
 }
