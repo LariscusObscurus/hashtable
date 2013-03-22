@@ -1,5 +1,8 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
+#include <vector>
+#include "share.hpp"
+#include "hash.hpp"
 
 class HashFile;
 
@@ -10,7 +13,7 @@ class hashtable {
 		std::vector <share_t> value;
 		bool set;
 		node();
-	}
+	};
 	
 	const unsigned size;
 	std::vector<node> hsh_vector; /*1621 Primzahl*/
@@ -27,6 +30,7 @@ public:
 	
 
 private:
+	bool n_add(std::string name, unsigned value);
 	unsigned collision(unsigned old_pos, unsigned &counter);
 	unsigned square(unsigned num);
 	void check_other(unsigned pos, unsigned counter, unsigned iterator);
