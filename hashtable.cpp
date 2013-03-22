@@ -2,13 +2,16 @@
 
 hashtable::node::node() : set(false) {};
 
-hashtable::hashtable(void) : size(1621), hsh_vector(std::vector<node>(size)) {}
+hashtable::hashtable(void) : size(1621),
+	hsh_vector(std::vector<node>(size)),
+	hsh_name(std::vector<size_t>(size)) {}
 
 /*Einen Eintrag in dem Hashtable einfügen.*/
 bool hashtable::add(std::vector<share_t> hsh_val)
 {
 	bool result = false;
 	unsigned pos = Hash(hsh_val[0].cont);
+	unsigned pos_name = Hash(hsh_val[0].name);
 	unsigned counter = 1;
 
 	for (unsigned i = size; i > 0; i--) {
@@ -18,6 +21,7 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 			result = true;
 			hsh_vector[pos].value = hsh_val;
 			hsh_vector[pos].set = true;
+			hsh_name[pos_name] = (size_t) pos;
 			break;
 		}
 	}
@@ -47,10 +51,21 @@ bool hashtable::del(std::string hsh_cont)
 	return result;
 }
 
-unsigned hashtable::find(std::string hsh_cont)
+void hashtable::find_by_name(std::string name)
+{
+	unsigned pos_name = Hash(name);
+	unsigned pos = hsh_name[pos_name];
+	find(pos);
+}
+
+void hashtable::find_by_cont(std::string cont)
+{
+	find(Hash(cont));
+}
+
+std::vector<share_t> hashtable::find(unsigned pos)
 {
 	std::vector<share_t> result = NULL;
-	unsigned pos = Hash(hsh_cont)
 	unsigned counter = 1;
 
 	for (unsigned i = size; i > 0; i--) {

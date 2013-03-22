@@ -13,7 +13,6 @@ class hashtable {
 	}
 	
 	const unsigned size;
-	std::vector<node> hsh_vector; /*1201 Primzahl*/
 	std::vector<node> hsh_vector; /*1621 Primzahl*/
 	std::vector<size_t> hsh_name; 
 public:
@@ -22,7 +21,10 @@ public:
 
 	bool add(std::vector<share_t> hsh_val);
 	bool del(std::string hsh_cont);
-	std::vector<share_t> find(std::string hsh_cont);
+	void find_by_name(std::string name);
+	void find_by_cont(std::string cont);
+	std::vector<share_t> find(unsigned pos);
+	
 
 private:
 	unsigned collision(unsigned old_pos, unsigned &counter);
