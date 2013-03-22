@@ -97,7 +97,7 @@ bool HashFile::save (const std::string& fileName, const hashtable& table)
 {
 	unsigned size = table.size;
 	std::vector<hashtable::node> hash = table.hsh_vector;
-	FILE* file = fopen(fileName.c_str(), "r");
+	FILE* file = fopen(fileName.c_str(), "w");
 	// write variables
 	int intValue = 0;
 	float floatValue = 0;
