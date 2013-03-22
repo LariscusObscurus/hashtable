@@ -15,7 +15,6 @@ bool HashFile::load (const std::string& fileName, hashtable& table)
 	std::vector<size_t>& refTable = table.hsh_name;
 	FILE* file = fopen(fileName.c_str(), "r");
 	// read variables
-	char id[4];
 	int intValue = 0;
 	float floatValue = 0;
 	// file settings
@@ -23,12 +22,6 @@ bool HashFile::load (const std::string& fileName, hashtable& table)
 	int shareCount = 0;
 	
 	if (!file)
-	{
-		return false;
-	}
-	fread((void*)&id[0], 1, 4, file);
-	
-	if (strcmp(&id[0], "hash"))
 	{
 		return false;
 	}
@@ -118,7 +111,6 @@ bool HashFile::save (const std::string& fileName, const hashtable& table)
 	{
 		return false;
 	}
-	fputs("hash", file);
 	
 	for (register unsigned i = 0; i < size; i++)
 	{
