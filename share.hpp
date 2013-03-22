@@ -9,17 +9,23 @@ typedef struct Share
 		int day;
 		int month;
 		int year;
+		
+		Date (void);
+		~Date (void);
 	} Date_t;
 	
 	std::string name;
 	std::string cont;
-	Date_t date;
 	float open;
 	float high;
 	float low;
 	float close;
 	float volume;
 	float adjClose;
+	Date_t date;
+	
+	Share (void);
+	~Share (void);
 } share_t;
 
 #endif // SHARE_HPP
