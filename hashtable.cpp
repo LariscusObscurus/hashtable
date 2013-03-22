@@ -80,7 +80,7 @@ std::vector<share_t> hashtable::find(unsigned pos)
 	return result;
 }
 
-unsigned hashtable::collision(unsigned old_pos, unsigned *counter)
+unsigned hashtable::collision(unsigned old_pos, unsigned &counter)
 {
 	unsigned new_pos;
 
@@ -115,7 +115,7 @@ bool hashtable::n_add(std::string name, unsigned value)
 {
 	bool result = false;
 	unsigned pos = Hash(name);
-	counter = 1;
+	unsigned counter = 1;
 	for (unsigned i = size; i > 0; i--) {
 		if(hsh_name[pos] == 0) {
 			result = true;
@@ -127,4 +127,10 @@ bool hashtable::n_add(std::string name, unsigned value)
 		}
 	}
 	return result;
+}
+
+bool hashtable::n_del(std::string name, unsigned value)
+{
+	bool = false;
+	unsigned pos = Hash(name);
 }
