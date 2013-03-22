@@ -1,4 +1,5 @@
 #include "menu.hpp"
+#include <iostream>
 
 using namespace std;
 int menu()
@@ -33,5 +34,6 @@ int menu()
 			cout << "This is not an option";
 		}
 	}
+	return 0;
 }
 

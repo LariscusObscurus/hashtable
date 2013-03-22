@@ -5,6 +5,7 @@
 #define	DEL	2
 #define	LOAD	3
 #define	IMPORT	4
+#define SAVE	5
 #define	EXIT	0
 
 int menu();
