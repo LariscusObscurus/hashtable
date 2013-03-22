@@ -32,7 +32,7 @@ void Plotter::plot (const std::vector<share_t>& shares)
 		int position = (int)(newVal / difference);
 		drawArea[i * width + position] = '*';
 	}
-	draw(shares[i].name, &drawArea[0]);
+	draw(shares[0].name, &drawArea[0]);
 }
 
 void Plotter::draw (const std::string& name, const char* drawArea)
