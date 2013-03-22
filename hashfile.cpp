@@ -104,7 +104,6 @@ bool HashFile::save (const std::string& fileName, const hashtable& table)
 {
 	unsigned size = table.size;
 	std::vector<hashtable::node> hash = table.hsh_vector;
-	std::vector<size_t> refTable = table.hsh_name;
 	FILE* file = fopen(fileName.c_str(), "r");
 	// write variables
 	int intValue = 0;
@@ -139,7 +138,7 @@ bool HashFile::save (const std::string& fileName, const hashtable& table)
 		// write share count
 		fwrite((const void*)&shareSize, sizeof(int), 1, file);
 		// write shares
-		for (register unsigned j = 0; j < shareSize; j++)
+		for (register int j = 0; j < shareSize; j++)
 		{
 			// write name
 			intValue = (int)shares[j].name.size();
