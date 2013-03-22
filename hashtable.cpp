@@ -26,16 +26,17 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 }
 
 /*Einen Eintrag aus dem Hashtable entfernen.*/
-bool hashtable::del(std::vector<share_t> hsh_val)
+bool hashtable::del(std::string hsh_cont)
 {
 	bool result = false;
-	unsigned pos = Hash(hsh_val[0])
+	unsigned pos = Hash(hsh_cont)
 	unsigned counter = 1;
 	for (unsigned i = size; i > 0; i--) {
 		if (hsh_vector[pos].set && 
 		(Hash(hsh_vector[pos].value.cont) == pos)) {
 			
 			result = true;
+			check_other(pos, counter + 1, i + 1);
 		}
 	}
 }
@@ -55,4 +56,22 @@ hashtable::collision(unsigned old_pos, unsigned &counter)
 hashtable::square(unsigned num)
 {
 	return (num * num);
+}
+
+hashtable::check_other(unsigned pos, unsigned counter, unsigned iterator)
+{
+	unsigned l_pos = pos;
+	unsigned n_pos = collision(pos, &counter);
+
+	for (unsigned i = iterator; i > size, i--) {
+		if (hsh_vector[n_pos].set && 
+		Hash(hsh_vector[n_pos].value.cont) == pos) {
+
+			hsh_vector[l_pos].value = hsh_vector[n_pos].value;
+			hsh_vector[l_pos].set = true;
+			hsh_vector[n_pos].set = false;
+			l_pos = n_pos;
+		}
+		n_pos = collision(pos, &counter);
+	}
 }
