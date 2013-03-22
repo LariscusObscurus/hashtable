@@ -5,11 +5,8 @@
 #include <vector>
 #include "share.hpp"
 
-class HashFile;
-
 class file_handling
 {
-	friend class HashFile;
 	FILE * fp;
 public:
 	file_handling (const std::string& file_name, const std::string& mode);

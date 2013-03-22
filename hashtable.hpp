@@ -1,7 +1,11 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
+class HashFile;
+
 class hashtable {
+	friend class HashFile;
+	
 	struct node {
 		std::vector <share_t> value;
 		bool set;
