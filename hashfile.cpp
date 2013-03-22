@@ -41,13 +41,13 @@ bool HashFile::load (const std::string& fileName, hashtable& table)
 			buffer = new char[intValue];
 			fread((void*)buffer, 1, intValue, file);
 			share.name += buffer;
-			delete buffer;
+			delete[] buffer;
 			// cont name
 			fread((void*)&intValue, sizeof(int), 1, file);
 			buffer = new char[intValue];
 			fread((void*)buffer, 1, intValue, file);
 			share.cont += buffer;
-			delete buffer;
+			delete[] buffer;
 			// day
 			fread((void*)&intValue, sizeof(int), 1, file);
 			share.date.day = intValue;
