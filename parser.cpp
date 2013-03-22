@@ -74,7 +74,7 @@ std::vector<share_t> parser::parse_csv(const std::string& name, const std::strin
 	std::string item;
 }*/
 
-int str_to_int (const std::string& str) 
+int parser::str_to_int (const std::string& str) 
 {
 	int result;
 	std::stringstream sstr(str);
@@ -82,7 +82,7 @@ int str_to_int (const std::string& str)
 	return result;
 }
 
-float str_to_flt (const std::string& str) 
+float parser::str_to_flt (const std::string& str) 
 {
 	float result;
 	std::stringstream sstr(str);
