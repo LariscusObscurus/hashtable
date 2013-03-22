@@ -50,22 +50,23 @@ bool hashtable::del(std::string hsh_cont)
 	return result;
 }
 
-void hashtable::find_by_name(std::string name)
+int hashtable::find(std::string in, std::vector<share_t> &result, omode_t mode)
 {
-	unsigned pos_name = hashString(name);
-	unsigned pos = (unsigned)hsh_name[pos_name];
-	find(pos);
-}
-
-void hashtable::find_by_cont(std::string cont)
-{
-	find(hashString(cont));
-}
-
-std::vector<share_t> hashtable::find(unsigned pos)
-{
-	std::vector<share_t> result(0);
+	unsigned pos = 0;
+	unsigned temp = 0;
 	unsigned counter = 1;
+
+	switch(mode) {
+	case NAME:
+		pos = hashString(in);
+		break;
+	case CONT:
+		temp = hashString(in);
+		pos = (unsigned)hsh_name[temp];
+		break;
+	default:
+		return MODE_ERROR;
+	}
 
 	for (unsigned i = size; i > 0; i--) {
 		if (hsh_vector[pos].set &&
@@ -77,7 +78,7 @@ std::vector<share_t> hashtable::find(unsigned pos)
 			pos = collision(pos, counter);
 		}
 	}
-	return result;
+	return 0;
 }
 
 unsigned hashtable::collision(unsigned old_pos, unsigned &counter)

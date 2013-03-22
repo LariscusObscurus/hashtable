@@ -4,6 +4,13 @@
 #include "share.hpp"
 #include "hash.hpp"
 
+#define MODE_ERROR	-1
+
+typedef enum {
+	NAME,
+	CONT
+}omode_t;
+
 class HashFile;
 
 class hashtable {
@@ -24,15 +31,13 @@ public:
 
 	bool add(std::vector<share_t> hsh_val);
 	bool del(std::string hsh_cont);
-	void find_by_name(std::string name);
-	void find_by_cont(std::string cont);
-	std::vector<share_t> find(unsigned pos);
-	
+	int find(std::string in, std::vector<share_t> &result, omode_t mode);
 
 private:
 	bool n_add(std::string name, unsigned value);
 	bool n_del(std::string name, unsigned value);
 	void n_check_other(unsigned pos, unsigned counter, unsigned iterator);
+
 	unsigned collision(unsigned old_pos, unsigned &counter);
 	unsigned square(unsigned num);
 	void check_other(unsigned pos, unsigned counter, unsigned iterator);
