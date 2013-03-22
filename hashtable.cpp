@@ -2,7 +2,7 @@
 
 hashtable::node::node() : set(false) {};
 
-hashtable::hashtable(void) : size(1201), hsh_vector(std::vector<node>(size)) {}
+hashtable::hashtable(void) : size(1621), hsh_vector(std::vector<node>(size)) {}
 
 /*Einen Eintrag in dem Hashtable einfügen.*/
 bool hashtable::add(std::vector<share_t> hsh_val)
