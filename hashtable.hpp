@@ -21,7 +21,7 @@ public:
 
 	bool add(std::vector<share_t> hsh_val);
 	bool del(std::string hsh_cont);
-	unsigned find(std::string hsh_cont);
+	std::vector<share_t> find(std::string hsh_cont);
 
 private:
 	unsigned collision(unsigned old_pos, unsigned &counter);

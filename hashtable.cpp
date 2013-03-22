@@ -10,8 +10,8 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 	bool result = false;
 	unsigned pos = Hash(hsh_val[0].cont);
 	unsigned counter = 1;
-	for (unsigned i = size; i > 0; i--)
-	{
+
+	for (unsigned i = size; i > 0; i--) {
 	 	if (hsh_vector[pos].set) {
 	 		pos = collision(pos, &counter);
 		} else {
@@ -31,34 +31,55 @@ bool hashtable::del(std::string hsh_cont)
 	bool result = false;
 	unsigned pos = Hash(hsh_cont)
 	unsigned counter = 1;
+
 	for (unsigned i = size; i > 0; i--) {
 		if (hsh_vector[pos].set && 
 		(Hash(hsh_vector[pos].value.cont) == pos)) {
 			
 			result = true;
+			hsh_vector[pos].set = false;
 			check_other(pos, counter + 1, i + 1);
+			break;
+		} else {
+			pos = collision(pos, &counter);
 		}
 	}
+	return result;
 }
 
-unsigned hashtable::find(std::string hsh_val)
+unsigned hashtable::find(std::string hsh_cont)
 {
+	std::vector<share_t> result = NULL;
+	unsigned pos = Hash(hsh_cont)
+	unsigned counter = 1;
 
+	for (unsigned i = size; i > 0; i--) {
+		if (hsh_vector[pos].set &&
+		Hash(hsh_vector[pos].value.cont) == pos) {
+			
+			result = hsh_vector[pos].value;
+			break;
+		} else {
+			pos = collision(pos, &counter);
+		}
+	}
+	return result;
 }
 
-hashtable::collision(unsigned old_pos, unsigned &counter)
+unsigned hashtable::collision(unsigned old_pos, unsigned &counter)
 {
 	unsigned new_pos;
+
 	new_pos = (old_pos + square((*counter)++) % size;
 	return new_pos
 }
 
-hashtable::square(unsigned num)
+unsigned hashtable::square(unsigned num)
 {
 	return (num * num);
 }
 
-hashtable::check_other(unsigned pos, unsigned counter, unsigned iterator)
+void hashtable::check_other(unsigned pos, unsigned counter, unsigned iterator)
 {
 	unsigned l_pos = pos;
 	unsigned n_pos = collision(pos, &counter);
