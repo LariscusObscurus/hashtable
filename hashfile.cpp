@@ -10,28 +10,21 @@ HashFile::~HashFile (void)
 
 bool HashFile::load (const std::string& fileName, hashtable& table)
 {
-	long read = 0;
-	std::vector<byte> buffer;
-	File file(fileName, "r");
+	ulong read = 0;
+	std::vector<hashtable::node>& hash = table.hsh_vector;
+	FILE* file = fopen(fileName.c_str(), "r");
+	// read variables
+	char id[4];
+	int intValue = 0;
+	std::string str;
+	float floatValue = 0;
 	
-	if (!mFile.isOpen())
+	if (!file)
 	{
 		return false;
-	}
-	
-	file.read(buffer, 4);
-	
-	while (true)
-	{
 	}
 }
 
 bool HashFile::save (const std::string& fileName, const hashtable& table)
 {
-	mFile = File(fileName, "w");
-	
-	if (!mFile.isOpen())
-	{
-		return false;
-	}
 }
