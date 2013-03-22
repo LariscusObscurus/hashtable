@@ -21,5 +21,6 @@ public:
 private:
 	unsigned collision(unsigned old_pos, unsigned &counter);
 	unsigned square(unsigned num);
+	void check_other(unsigned key, unsigned index, unsigned iterator);
 };
 #endif
