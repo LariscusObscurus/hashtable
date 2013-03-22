@@ -29,17 +29,29 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 }
 
 /*Einen Eintrag aus dem hashStringtable entfernen.*/
-bool hashtable::del(std::string hsh_cont)
+bool hashtable::del(std::string in, omode_t mode)
 {
 	bool result = false;
-	unsigned pos = hashString(hsh_cont);
+	unsigned pos;
+	unsigned temp;
 	unsigned counter = 1;
+
+	switch(mode) {
+	case NAME:
+		temp = hashString(in);
+		pos = (unsigned)hsh_name[temp];
+		break;
+	case CONT:
+		pos = hashString(in);
+		break;
+	}
 
 	for (unsigned i = size; i > 0; i--) {
 		if (hsh_vector[pos].set && 
 		(hashString(hsh_vector[pos].value[0].cont) == pos)) {
 			
 			result = true;
+			n_del(hsh_vector[pos].value[0].name, pos);
 			hsh_vector[pos].set = false;
 			check_other(pos, counter + 1, i + 1);
 			break;
@@ -57,15 +69,13 @@ int hashtable::find(std::string in, std::vector<share_t> &result, omode_t mode)
 	unsigned counter = 1;
 
 	switch(mode) {
-	case NAME:
+	case CONT:
 		pos = hashString(in);
 		break;
-	case CONT:
+	case NAME:
 		temp = hashString(in);
 		pos = (unsigned)hsh_name[temp];
 		break;
-	default:
-		return MODE_ERROR;
 	}
 
 	for (unsigned i = size; i > 0; i--) {
