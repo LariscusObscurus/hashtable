@@ -10,11 +10,19 @@ HashFile::~HashFile (void)
 
 bool HashFile::load (const std::string& fileName, hashtable& table)
 {
-	mFile = File(fileName, "r");
+	long read = 0;
+	std::vector<byte> buffer;
+	File file(fileName, "r");
 	
 	if (!mFile.isOpen())
 	{
 		return false;
+	}
+	
+	file.read(buffer, 4);
+	
+	while (true)
+	{
 	}
 }
 

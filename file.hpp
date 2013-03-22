@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <string>
 #include <vector>
-typedef unsigned char ubyte;
+typedef char byte;
 typedef unsigned long ulong;
 
 #define ERROR_READING -1
@@ -18,11 +18,14 @@ public:
 	explicit File (const std::string& fileName, const std::string& mode);
 	virtual ~File (void);
 	
-	virtual long read (std::vector<ubyte>& buffer);
-	virtual long write (const std::vector<ubyte>& buffer);
+	virtual long read (std::vector<byte>& buffer);
+	virtual long read (std::vector<byte>& buffer, ulong count);
+	virtual long write (const std::vector<byte>& buffer);
+	virtual long write (const std::vector<byte>& buffer, ulong count);
 	virtual long seek (long offset, int origin);
 	virtual long size (void);
-	virtual inline bool isOpen (void) { return !mFile; }
+	virtual inline long position (void) const { return ftell(mFile); }
+	virtual inline bool isOpen (void) const { return !mFile; }
 private:
 };
 
