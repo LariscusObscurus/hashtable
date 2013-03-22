@@ -15,7 +15,7 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 
 	for (unsigned i = size; i > 0; i--) {
 	 	if (hsh_vector[pos].set) {
-	 		pos = collision(pos, &counter);
+	 		pos = collision(pos, counter);
 		} else {
 			result = true;
 			hsh_vector[pos].value = hsh_val;
@@ -44,7 +44,7 @@ bool hashtable::del(std::string hsh_cont)
 			check_other(pos, counter + 1, i + 1);
 			break;
 		} else {
-			pos = collision(pos, &counter);
+			pos = collision(pos, counter);
 		}
 	}
 	return result;
@@ -74,7 +74,7 @@ std::vector<share_t> hashtable::find(unsigned pos)
 			result = hsh_vector[pos].value;
 			break;
 		} else {
-			pos = collision(pos, &counter);
+			pos = collision(pos, counter);
 		}
 	}
 	return result;
@@ -96,9 +96,9 @@ unsigned hashtable::square(unsigned num)
 void hashtable::check_other(unsigned pos, unsigned counter, unsigned iterator)
 {
 	unsigned l_pos = pos;
-	unsigned n_pos = collision(pos, &counter);
+	unsigned n_pos = collision(pos, counter);
 
-	for (unsigned i = iterator; i > size, i--) {
+	for (unsigned i = iterator; i > size; i--) {
 		if (hsh_vector[n_pos].set && 
 		Hash(hsh_vector[n_pos].value.cont) == pos) {
 
@@ -107,7 +107,7 @@ void hashtable::check_other(unsigned pos, unsigned counter, unsigned iterator)
 			hsh_vector[n_pos].set = false;
 			l_pos = n_pos;
 		}
-		n_pos = collision(pos, &counter);
+		n_pos = collision(pos, counter);
 	}
 }
 
@@ -123,7 +123,7 @@ bool hashtable::n_add(std::string name, unsigned value)
 			break;
 
 		} else {
-			pos = collision(pos, &counter);
+			pos = collision(pos, counter);
 		}
 	}
 	return result;
@@ -142,7 +142,7 @@ bool hashtable::n_del(std::string name, unsigned value)
 			break;
 
 		} else {
-			pos = collision(pos, &counter);
+			pos = collision(pos, counter);
 		}
 	}
 	return result;
@@ -151,7 +151,7 @@ bool hashtable::n_del(std::string name, unsigned value)
 void n_check_other(unsigned pos, unsigned counter, unsigned iterator)
 {
 	unsigned l_pos = pos;
-	unsigned n_pos = collision(pos, &counter);
+	unsigned n_pos = collision(pos, counter);
 
 	for (unsigned i = iterator; i > size, i--) {
 		if (hsh_name[n_pos].set) {
@@ -159,6 +159,6 @@ void n_check_other(unsigned pos, unsigned counter, unsigned iterator)
 			hsh_name[n_pos] = 0;
 			l_pos = n_pos;
 		}
-		n_pos = collision(pos, &counter);
+		n_pos = collision(pos, counter);
 	}
 }
