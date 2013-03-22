@@ -131,7 +131,7 @@ bool HashFile::save (const std::string& fileName, const hashtable& table)
 	}
 	fwrite((const void*)&corpCount, sizeof(int), 1, file);
 	
-	for (register unsigned i = 0; i < (unsigned)corpCount; i++)
+	for (register int i = 0; i < corpCount; i++)
 	{
 		std::vector<share_t> shares = hash[indices[i]].value;
 		int shareSize = (int)shares.size();
