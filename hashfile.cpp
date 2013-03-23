@@ -13,7 +13,7 @@ bool HashFile::load (const std::string& fileName, hashtable& table)
 {
 	std::vector<hashtable::node>& hash = table.hsh_vector;
 	std::vector<size_t>& refTable = table.hsh_name;
-	FILE* file = fopen(fileName.c_str(), "r");
+	FILE* file = fopen(fileName.c_str(), "rb");
 	// read variables
 	int intValue = 0;
 	float floatValue = 0;
@@ -97,7 +97,7 @@ bool HashFile::save (const std::string& fileName, const hashtable& table)
 {
 	unsigned size = table.size;
 	std::vector<hashtable::node> hash = table.hsh_vector;
-	FILE* file = fopen(fileName.c_str(), "w");
+	FILE* file = fopen(fileName.c_str(), "wb");
 	// write variables
 	int intValue = 0;
 	float floatValue = 0;
