@@ -29,25 +29,26 @@ bool HashFile::load (const std::string& fileName, hashtable& table)
 	
 	for (register int i = 0; i < corpCount; i++)
 	{
+		char* name = 0;
+		char* cont = 0;
 		std::vector<share_t> shares(0);
 		fread((void*)&shareCount, sizeof(int), 1, file);
-		
+		// share name
+		fread((void*)&intValue, sizeof(int), 1, file);
+		name = new char[intValue];
+		fread((void*)name, 1, intValue, file);
+		// cont name
+		fread((void*)&intValue, sizeof(int), 1, file);
+		cont = new char[intValue];
+		fread((void*)cont, 1, intValue, file);
+		// read share
 		for (register int j = 0; j < shareCount; j++)
 		{
 			share_t share;
-			char* buffer = 0;
-			// share name
-			fread((void*)&intValue, sizeof(int), 1, file);
-			buffer = new char[intValue];
-			fread((void*)buffer, 1, intValue, file);
-			share.name += buffer;
-			delete[] buffer;
-			// cont name
-			fread((void*)&intValue, sizeof(int), 1, file);
-			buffer = new char[intValue];
-			fread((void*)buffer, 1, intValue, file);
-			share.cont += buffer;
-			delete[] buffer;
+			// name
+			share.name += name;
+			// cont
+			share.cont += cont;
 			// day
 			fread((void*)&intValue, sizeof(int), 1, file);
 			share.date.day = intValue;
@@ -75,7 +76,6 @@ bool HashFile::load (const std::string& fileName, hashtable& table)
 			// adjClose
 			fread((void*)&floatValue, sizeof(float), 1, file);
 			share.adjClose = floatValue;
-			
 			// add to shares
 			shares.push_back(share);
 		}
@@ -89,6 +89,9 @@ bool HashFile::load (const std::string& fileName, hashtable& table)
 		key = hashString(shares[0].name) % table.size;
 		// add to ref hash table
 		refTable[key] = (size_t)(hashString(shares[0].cont) % table.size);
+		// delete memory
+		delete[] name;
+		delete[] cont;
 	}
 	return true;
 }
@@ -129,23 +132,23 @@ bool HashFile::save (const std::string& fileName, const hashtable& table)
 		int shareSize = (int)shares.size();
 		// write share count
 		fwrite((const void*)&shareSize, sizeof(int), 1, file);
-		// write shares
+		// write name
+		intValue = (int)shares[j].name.size();
+		fwrite((const void*)&intValue, sizeof(int), 1, file);
+		for (register int k = 0; k < intValue; k++)
+		{
+			fputc(shares[j].name[k], file);
+		}
+		// write cont
+		intValue = shares[j].cont.size();
+		fwrite((const void*)&intValue, sizeof(int), 1, file);
+		for (register int k = 0; k < intValue; k++)
+		{
+			fputc(shares[j].cont[k], file);
+		}
+		// write share
 		for (register int j = 0; j < shareSize; j++)
 		{
-			// write name
-			intValue = (int)shares[j].name.size();
-			fwrite((const void*)&intValue, sizeof(int), 1, file);
-			for (register int k = 0; k < intValue; k++)
-			{
-				fputc(shares[j].name[k], file);
-			}
-			// write cont
-			intValue = shares[j].cont.size();
-			fwrite((const void*)&intValue, sizeof(int), 1, file);
-			for (register int k = 0; k < intValue; k++)
-			{
-				fputc(shares[j].cont[k], file);
-			}
 			// write day
 			intValue = shares[j].date.day;
 			fwrite((const void*)&intValue, sizeof(int), 1, file);
