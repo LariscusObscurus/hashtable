@@ -7,13 +7,9 @@
 
 class file_handling
 {
-	FILE * fp;
 public:
-	file_handling (const std::string& file_name, const std::string& mode);
-	~file_handling ();
-
-	std::vector<share_t> import(const std::string& name, const std::string& cont);
-	int save();
-	int load();
+	static std::vector<share_t> import(const std::string& name, const std::string& cont);
+	static bool load (const std::string& fileName, hashtable& table);
+	static bool save (const std::string& fileName, const hashtable& table);
 };
 #endif
