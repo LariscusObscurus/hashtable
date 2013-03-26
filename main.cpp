@@ -42,10 +42,10 @@ int main (void)
 		<< "1.) ADD    - Add an additional entry to the hashtable.\n"
 		<< "2.) DEL    - Delete an entry in the hashtable.\n"
 		<< "3.) IMPORT - Import data from a csv file.\n"
-		<< "4.) SEARCH - Search for a share\n"
-		<< "5.) PLOT   - Plot last 30 closings for a share\n"
-		<< "6.) SAVE   - Save the current hashtable\n"
-		<< "7.) LOAD   - Load a previously saved hashtable\n"
+		<< "4.) SEARCH - Search for a share.\n"
+		<< "5.) PLOT   - Plot last 30 closings for a share.\n"
+		<< "6.) SAVE   - Save the current hashtable.\n"
+		<< "7.) LOAD   - Load a previously saved hashtable.\n"
 		<< "8.) EXIT   - Exit this programm." << endl;
 
 		cin >> chosen;
@@ -53,11 +53,11 @@ int main (void)
 			case ADD: {
 				if (table->add(add()))
 				{
-					cout << "added" << endl;
+					cout << "Added." << endl;
 				}
 				else
 				{
-					cout << "not added" << endl;
+					cout << "Not added." << endl;
 				}
 				break;
 			}
@@ -66,44 +66,106 @@ int main (void)
 				
 				if (table->del(str, mode))
 				{
-					cout << "deleted" << endl;
+					cout << "Deleted." << endl;
 				}
 				else
 				{
-					cout << "not deleted" << endl;
+					cout << "Not deleted." << endl;
 				}
 				break;
 			}
 			case IMPORT: {
 				cout << "Enter the csv file name: ";
 				cin >> str;
-				cout << "Enter a name: ";
-				cin >> name;
-				cout << "Enter a contraction: ";
-				cin >> cont;
+				getName(name);
+				getContraction(cont);
 				shares = file_handling::import(str, name, cont);
 				
 				if (!shares.size())
 				{
-					cout << "an error occured" << endl;
+					cout << "An error occured." << endl;
 				}
 				else
 				{
 					table->add(shares);
-					cout << "added content from file: " << str << endl;
+					cout << "Added content from file '" << str << "'." << endl;
 				}
 				break;
 			}
 			case SEARCH: {
+				getMode(mode);
+				
+				switch (mode) {
+				case NAME:
+					getName(str);
+					break;
+				case CONT:
+					getContraction(str);
+					break;
+				}
+				
+				if (table->find(str, shares, mode))
+				{
+					cout << "'" << str << "' exist and it's values are:\n";
+					cout << "Open: " << shares[0].open << "\n";
+					cout << "High: " << shares[0].high << "\n";
+					cout << "Low: " << shares[0].low << "\n";
+					cout << "Close: " << shares[0].close << "\n";
+					cout << "Volume: " << shares[0].volume << "\n";
+					cout << "Adjusted Close: " << shares[0].adjClose << endl;
+				}
+				else
+				{
+					cout << "Couldn't find '" << str << "'." << endl;
+				}
 				break;
 			}
 			case PLOT: {
+				getMode(mode);
+				
+				switch (mode) {
+				case NAME:
+					getName(str);
+					break;
+				case CONT:
+					getContraction(str);
+					break;
+				}
+				
+				if (table->find(str, shares, mode))
+				{
+					plotter->plot(shares);
+				}
+				else
+				{
+					cout << "Couldn't find '" << str << "'." << endl;
+				}
 				break;
 			}
 			case SAVE: {
+				cout << "Enter the file name to store the hash table: ";
+				cin >> str;
+				if (file_handling::save(str, *table))
+				{
+					cout << "File with name '" << str << "' were successfull saved." << endl;
+				}
+				else
+				{
+					cout << "An error occured while writing process." << endl;
+				}
 				break;
 			}
 			case LOAD: {
+				cout << "Enter the file name to load content into the hash table: ";
+				cin >> str;
+				if (file_handling::load(str, *table))
+				{
+					cout << "File with name '" << str << "' were successfull saved." << endl;
+				}
+				else
+				{
+					cout << "An error occured while writing process." << endl;
+				}
 				break;
 			}
 			case EXIT: {
@@ -115,7 +177,12 @@ int main (void)
 			break;
 		}
 		cout << endl;
+		str = "";
+		name = "";
+		cont = "";
 	}
+	delete plotter;
+	delete table;
 	return EXIT_SUCCESS;
 }
 
