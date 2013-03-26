@@ -126,14 +126,16 @@ int main (void)
 				if (table->find(str, shares, mode))
 				{
 					cout << "'" << str << "' exist and it's values are:\n";
-					for (int i = shares.size(); i >= 0; i--) 
+					cout << "+------------------------------" << "\n";
+					for (int i = 0; i < (int)shares.size(); i++) 
 					{
 						cout << "Open: " << shares[i].open << "\n";
 						cout << "High: " << shares[i].high << "\n";
 						cout << "Low: " << shares[i].low << "\n";
 						cout << "Close: " << shares[i].close << "\n";
 						cout << "Volume: " << shares[i].volume << "\n";
-						cout << "Adjusted Close: " << shares[i].adjClose << endl;
+						cout << "Adjusted Close: " << shares[i].adjClose << "\n";
+						cout << "+------------------------------\n";
 					}
 				}
 				else
@@ -214,9 +216,11 @@ void getMode (omode_t& mode)
 	cout << "Do you wish do enter a name or a contraction? (1 = name, 2 = contraction)" << endl;
 	while (true)
 	{
+		std::string str;
 		int result = 0;
 		cout << "Input: ";
-		cin >> result;
+		cin >> str;
+		result = StringToNumber<int>(str);
 		
 		if (result == 1)
 		{
@@ -249,6 +253,7 @@ void getContraction (std::string& str)
 
 std::vector<share_t> add (void)
 {
+	std::string str;
 	std::vector<share_t> result;
 	share_t share;
 	cout << "Enter a name: ";
@@ -258,17 +263,23 @@ std::vector<share_t> add (void)
 	cout << "Enter a date (m/d/y): ";
 	scanf("%d/%d/%d", &share.date.month, &share.date.day, &share.date.year);
 	cout << "Enter an open value: ";
-	cin >> share.open;
+	cin >> str;
+	share.open = StringToNumber<float>(str);
 	cout << "Enter an high value: ";
-	cin >> share.high;
+	cin >> str;
+	share.high = StringToNumber<float>(str);
 	cout << "Enter a low value: ";
-	cin >> share.low;
+	cin >> str;
+	share.low = StringToNumber<float>(str);
 	cout << "Enter a closing value: ";
-	cin >> share.close;
+	cin >> str;
+	share.close = StringToNumber<float>(str);
 	cout << "Enter a volume value: ";
-	cin >> share.volume;
+	cin >> str;
+	share.volume = StringToNumber<float>(str);
 	cout << "Enter a adjusted closing value: ";
-	cin >> share.adjClose;
+	cin >> str;
+	share.adjClose = StringToNumber<float>(str);
 	cout << "Finished with manual input" << endl;
 	result = std::vector<share_t>(1, share);
 	return result;
