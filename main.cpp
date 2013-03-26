@@ -1,7 +1,7 @@
-#include <cstdio>
-#include <cstdarg>
+#include <iostream>
 #include <string>
 #include <vector>
+#include <cstdlib>
 #include "filehandling.hpp"	
 #include "hash.hpp"
 #include "parser.hpp"
@@ -10,14 +10,20 @@
 
 #define	ADD	1
 #define	DEL	2
-#define	LOAD	3
-#define	IMPORT	4
-#define SAVE	5
-#define	EXIT	0
+#define IMPORT	3
+#define SEARCH	4
+#define PLOT	5
+#define SAVE	6
+#define	LOAD	7
+#define	EXIT	8
 
 using namespace std;
 
+void getMode (omode_t& mode);
+void getName (std::string& str);
+void getContraction (std::string& str);
 std::vector<share_t> shares add (void);
+void del (std::string& str, omode_t& mode);
 
 int main (void)
 {
@@ -26,9 +32,8 @@ int main (void)
 	IPlotter* plotter = new dynamic_cast<IPlotter*>(new Plotter());
 	
 	int chosen;
-	bool finished = false;
 
-	while(!finished) {
+	while(chosen != EXIT) {
 		cout << "MENU:\n"
 		<< "1.) ADD    - Add an additional entry to the hashtable.\n"
 		<< "2.) DEL    - Delete an entry in the hashtable.\n"
@@ -41,25 +46,97 @@ int main (void)
 
 		cin >> chosen;
 		switch(chosen) {
-		case ADD: {
-			table.add(add());;
+			case ADD: {
+				if (table.add(add()))
+				{
+					cout << "added" << endl;
+				}
+				else
+				{
+					cout << "not added" << endl;
+				}
+				break;
+			}
+			case DEL: {
+				std::string str;
+				omode_t mode;
+				del(str, mode);
+				
+				if (table.del(str, mode))
+				{
+					cout << "deleted" << endl;
+				}
+				else
+				{
+					cout << "not deleted" << endl;
+				}
+				break;
+			}
+			case IMPORT: {
+				break;
+			}
+			case SEARCH: {
+				break;
+			}
+			case PLOT: {
+				break;
+			}
+			case SAVE: {
+				break;
+			}
+			case LOAD: {
+				break;
+			}
+			case EXIT: {
+				cout << "Bye." << endl;
+				break;
+			}
+			default:
+			cout << "This is not an option" << endl;
 			break;
-		}
-		case DEL:
-			break;
-		case LOAD:
-			break;
-		case SAVE:
-			break;
-		case IMPORT:
-			break;
-		case EXIT:
-			finished = true;
-		default:
-			cout << "This is not an option";
 		}
 	}
 	return EXIT_SUCCESS;
+}
+
+void getMode (omode_t& mode)
+{
+	cout << "Do you wish do enter a new or a contraction? (1 = name, 2 = contraction)" << endl;
+	while (true)
+	{
+		int result = 0;
+		cout << "Input: ";
+		cin >> result;
+		
+		if (result == 1)
+		{
+			mode = NAME;
+			break;
+		}
+		else if (result == 2)
+		{
+			mode == CONT;
+			break;
+		}
+		else
+		{
+			cout << "Couldn't verify input, please enter again." << endl;
+		}
+	}
+}
+
+void getName (std::string& str)
+{
+	cout << "Please enter a name: ";
+	cin >> str;
+	cout << endl;
+}
+
+void getContraction (std::string& str)
+{
+	cout << "Please enter a contraction: ";
+	cin >> str;
+	cout << endl;
 }
 
 share_t add (void)
@@ -89,4 +166,20 @@ share_t add (void)
 	cout << "Finished with manual input" << endl;
 	result = std::vector<share_t>(1, share);
 	return result;
+}
+
+void del (std::string& str, omode_t& mode)
+{
+	getMode(mode);
+	
+	switch (mode)
+	{
+	case NAME: {
+		getName(str);
+		break;
+	}
+	case CONT: {
+		getContraction(str);
+	}
+	}
 }
