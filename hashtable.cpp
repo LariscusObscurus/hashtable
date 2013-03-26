@@ -25,6 +25,7 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 					hsh_vector[pos].value.begin(), 
 					hsh_val.begin(), 
 					hsh_val.end());
+				result = true;
 			} else {
 		 		pos = collision(pos, counter);
 			}

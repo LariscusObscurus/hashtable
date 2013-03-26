@@ -108,12 +108,15 @@ int main (void)
 				if (table->find(str, shares, mode))
 				{
 					cout << "'" << str << "' exist and it's values are:\n";
-					cout << "Open: " << shares[0].open << "\n";
-					cout << "High: " << shares[0].high << "\n";
-					cout << "Low: " << shares[0].low << "\n";
-					cout << "Close: " << shares[0].close << "\n";
-					cout << "Volume: " << shares[0].volume << "\n";
-					cout << "Adjusted Close: " << shares[0].adjClose << endl;
+					for (int i = shares.size(); i >= 0; i--) 
+					{
+						cout << "Open: " << shares[i].open << "\n";
+						cout << "High: " << shares[i].high << "\n";
+						cout << "Low: " << shares[i].low << "\n";
+						cout << "Close: " << shares[i].close << "\n";
+						cout << "Volume: " << shares[i].volume << "\n";
+						cout << "Adjusted Close: " << shares[i].adjClose << endl;
+					}
 				}
 				else
 				{
