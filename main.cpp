@@ -22,14 +22,14 @@ using namespace std;
 void getMode (omode_t& mode);
 void getName (std::string& str);
 void getContraction (std::string& str);
-std::vector<share_t> shares add (void);
+std::vector<share_t> add (void);
 void del (std::string& str, omode_t& mode);
 
 int main (void)
 {
-	hashtable table = new hashtable();
-	parser csvParser = new parser();
-	IPlotter* plotter = new dynamic_cast<IPlotter*>(new Plotter());
+	hashtable* table = new hashtable();
+	parser* csvParser = new parser();
+	IPlotter* plotter = dynamic_cast<IPlotter*>(new Plotter());
 	
 	int chosen;
 	std::string str;
@@ -51,7 +51,7 @@ int main (void)
 		cin >> chosen;
 		switch(chosen) {
 			case ADD: {
-				if (table.add(add()))
+				if (table->add(add()))
 				{
 					cout << "added" << endl;
 				}
@@ -64,7 +64,7 @@ int main (void)
 			case DEL: {
 				del(str, mode);
 				
-				if (table.del(str, mode))
+				if (table->del(str, mode))
 				{
 					cout << "deleted" << endl;
 				}
@@ -82,6 +82,7 @@ int main (void)
 				break;
 			}
 			case SEARCH: {
+				
 				break;
 			}
 			case PLOT: {
@@ -122,7 +123,7 @@ void getMode (omode_t& mode)
 		}
 		else if (result == 2)
 		{
-			mode == CONT;
+			mode = CONT;
 			break;
 		}
 		else
@@ -146,7 +147,7 @@ void getContraction (std::string& str)
 	cout << endl;
 }
 
-share_t add (void)
+std::vector<share_t> add (void)
 {
 	std::vector<share_t> result;
 	share_t share;
