@@ -13,8 +13,8 @@ public:
 class Plotter : public virtual IPlotter
 {
 public:
-	Plotter (void);
-	virtual ~Plotter (void);
+	Plotter (void) {}
+	virtual ~Plotter (void) {}
 	virtual void plot (const std::vector<share_t>& shares);
 private:
 	void draw (const std::string& name, const float* values, const char* drawArea, const int width, const int height);

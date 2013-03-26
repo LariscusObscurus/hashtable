@@ -28,7 +28,6 @@ void del (std::string& str, omode_t& mode);
 int main (void)
 {
 	hashtable* table = new hashtable();
-	parser* csvParser = new parser();
 	IPlotter* plotter = dynamic_cast<IPlotter*>(new Plotter());
 	
 	int chosen;
@@ -75,14 +74,15 @@ int main (void)
 				break;
 			}
 			case IMPORT: {
+				cout << "Enter the csv file name: ";
+				cin >> str;
 				cout << "Enter a name: ";
 				cin >> name;
-				cout << "Enter a cont: ";
+				cout << "Enter a contraction: ";
 				cin >> cont;
 				break;
 			}
 			case SEARCH: {
-				
 				break;
 			}
 			case PLOT: {

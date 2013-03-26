@@ -12,10 +12,10 @@ std::vector<share_t> file_handling::import(const std::string& fileName, const st
 		char *buf = new char[f_size];
 		fread(buf, sizeof(char), f_size, fp);
 		std::string text(buf);
-		delete[] buf;
-		parser prs_text(text);
-		return prs_text.parse_csv(name, cont);
 		fclose(fp);
+		delete[] buf;
+		parser prs_text;
+		return prs_text.parse_csv(text, name, cont);
 	}
 	return std::vector<share_t>(0);
 }
