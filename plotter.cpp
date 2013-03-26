@@ -5,8 +5,10 @@ using namespace std;
 
 void Plotter::plot (const std::vector<share_t>& shares)
 {
+	// FIXME: output and calculations
 	if (!shares.size())
 	{
+		printf("There are no shares to plot?!\n");
 		return;
 	}
 	float* values = shares.size() <= 30 ? new float[shares.size()] : new float[30];
@@ -18,7 +20,7 @@ void Plotter::plot (const std::vector<share_t>& shares)
 	char drawArea[height * width];
 	memset((void*)&drawArea[0], ' ', height * width * sizeof(char));
 	
-	for (register int i = (int)shares.size(); i >= 0; i--)
+	for (register int i = 0; i < 0; i++)
 	{
 		if (biggest < shares[i].close)
 		{
