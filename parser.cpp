@@ -18,7 +18,7 @@ std::vector<share_t> parser::parse_csv(const std::string& in,
 
 	/* Erste Zeile abtrennen */
 	std::string::size_type l_pos = in.find_first_of("\n", 0);
-	std::string::size_type pos = in.find_first_of(delimiters, l_pos);
+	std::string::size_type pos = in.find_first_of(delimiters, l_pos+1);
 
 	while (std::string::npos != pos || std::string::npos != l_pos) {
 		tokens.push_back (in.substr(l_pos, pos - l_pos));
@@ -64,11 +64,6 @@ std::vector<share_t> parser::parse_csv(const std::string& in,
 				break;
 			}
 		}
-	}
-	for (int i = 0; i < imp_share.size(); i++) {
-		std::cout << imp_share[i].adjClose 
-			<< imp_share[i].name
-			<< std::endl;
 	}
 	return imp_share;
 }
