@@ -35,6 +35,7 @@ int main (void)
 	std::string name;
 	std::string cont;
 	omode_t mode;
+	std::vector<share_t> shares;
 
 	while(chosen != EXIT) {
 		cout << "MENU:\n"
@@ -80,6 +81,17 @@ int main (void)
 				cin >> name;
 				cout << "Enter a contraction: ";
 				cin >> cont;
+				shares = file_handling::import(str, name, cont);
+				
+				if (!shares.size())
+				{
+					cout << "an error occured" << endl;
+				}
+				else
+				{
+					table->add(shares);
+					cout << "added content from file: " << str << endl;
+				}
 				break;
 			}
 			case SEARCH: {
