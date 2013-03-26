@@ -46,7 +46,8 @@ int main (void)
 		<< "5.) PLOT   - Plot last 30 closings for a share.\n"
 		<< "6.) SAVE   - Save the current hashtable.\n"
 		<< "7.) LOAD   - Load a previously saved hashtable.\n"
-		<< "8.) EXIT   - Exit this programm." << endl;
+		<< "8.) EXIT   - Exit this programm.\n"
+		<< "Input: ";
 
 		cin >> chosen;
 		switch(chosen) {
@@ -235,9 +236,7 @@ std::vector<share_t> add (void)
 	cout << "Enter a contraction: ";
 	cin >> share.cont;
 	cout << "Enter a date (m/d/y): ";
-	cin >> share.date.month;
-	cin >> share.date.day;
-	cin >> share.date.year;
+	scanf("%d/%d/%d", &share.date.month, &share.date.day, &share.date.year);
 	cout << "Enter an open value: ";
 	cin >> share.open;
 	cout << "Enter an high value: ";
