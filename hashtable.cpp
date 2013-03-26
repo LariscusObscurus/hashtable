@@ -15,7 +15,11 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 
 	for (unsigned i = BOUNDARY; i > 0; i--) {
 	 	if (hsh_vector[pos].set) {
-	 		pos = collision(pos, counter);
+			if ((hsh_vector[pos].value.name == hsh_val[0].name) 
+			&& (hsh_vector[pos].value.cont == hsh_val[0].cont)) {
+			} else {
+		 		pos = collision(pos, counter);
+			}
 		} else {
 			result = true;
 			hsh_vector[pos].value = hsh_val;
@@ -67,10 +71,11 @@ bool hashtable::del(const std::string& in, omode_t mode)
 	return result;
 }
 
-int hashtable::find(const std::string& in, 
-			std::vector<share_t> &result, 
+bool hashtable::find(const std::string& in, 
+			std::vector<share_t> &answer, 
 			omode_t mode)
 {
+	bool result = false;
 	unsigned pos = 0;
 	unsigned temp = 0;
 	unsigned counter = 1;
@@ -89,13 +94,15 @@ int hashtable::find(const std::string& in,
 		if (hsh_vector[pos].set &&
 		hashString(hsh_vector[pos].value[0].cont) == pos) {
 			
-			result = hsh_vector[pos].value;
+
+			answer = hsh_vector[pos].value;
+			result = true;
 			break;
 		} else {
 			pos = collision(pos, counter);
 		}
 	}
-	return 0;
+	return result;
 }
 
 unsigned hashtable::collision(unsigned old_pos, unsigned &counter)

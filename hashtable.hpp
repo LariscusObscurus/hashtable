@@ -33,7 +33,7 @@ public:
 
 	bool add(std::vector<share_t> hsh_val);
 	bool del(const std::string& in, omode_t mode);
-	int find(const std::string& in, std::vector<share_t> &result, omode_t mode);
+	bool find(const std::string& in, std::vector<share_t> &answer, omode_t mode);
 
 private:
 	bool n_add(const std::string& name, unsigned value);
