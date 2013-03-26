@@ -6,6 +6,8 @@ hashtable::hashtable(void) : size(1621),
 	hsh_vector(std::vector<node>(size)),
 	hsh_name(std::vector<size_t>(0, size)) {}
 
+hashtable::~hashtable() {}
+
 /*Einen Eintrag in dem hashStringtable einfügen.*/
 bool hashtable::add(std::vector<share_t> hsh_val)
 {
