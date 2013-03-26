@@ -13,7 +13,7 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 	unsigned pos = hashString(hsh_val[0].cont);
 	unsigned counter = 1;
 
-	for (unsigned i = size; i > 0; i--) {
+	for (unsigned i = BOUNDARY; i > 0; i--) {
 	 	if (hsh_vector[pos].set) {
 	 		pos = collision(pos, counter);
 		} else {
@@ -46,7 +46,7 @@ bool hashtable::del(const std::string& in, omode_t mode)
 		break;
 	}
 
-	for (unsigned i = size; i > 0; i--) {
+	for (unsigned i = BOUNDARY; i > 0; i--) {
 		if (hsh_vector[pos].set && 
 		(hashString(hsh_vector[pos].value[0].cont) == pos)) {
 			
@@ -62,7 +62,9 @@ bool hashtable::del(const std::string& in, omode_t mode)
 	return result;
 }
 
-int hashtable::find(const std::string& in, std::vector<share_t> &result, omode_t mode)
+int hashtable::find(const std::string& in, 
+			std::vector<share_t> &result, 
+			omode_t mode)
 {
 	unsigned pos = 0;
 	unsigned temp = 0;
@@ -78,7 +80,7 @@ int hashtable::find(const std::string& in, std::vector<share_t> &result, omode_t
 		break;
 	}
 
-	for (unsigned i = size; i > 0; i--) {
+	for (unsigned i = BOUNDARY; i > 0; i--) {
 		if (hsh_vector[pos].set &&
 		hashString(hsh_vector[pos].value[0].cont) == pos) {
 			
@@ -127,7 +129,7 @@ bool hashtable::n_add(const std::string& name, unsigned value)
 	bool result = false;
 	unsigned pos = hashString(name);
 	unsigned counter = 1;
-	for (unsigned i = size; i > 0; i--) {
+	for (unsigned i = BOUNDARY; i > 0; i--) {
 		if(hsh_name[pos] == 0) {
 			result = true;
 			hsh_name[pos] = value;
@@ -145,7 +147,7 @@ bool hashtable::n_del(const std::string& name, unsigned value)
 	bool result = false;
 	unsigned pos = hashString(name);
 	unsigned counter = 1;
-	for (unsigned i = size; i > size; i--) {
+	for (unsigned i = BOUNDARY; i > size; i--) {
 		if (hsh_name[pos] == value) {
 			result = true;
 			hsh_name[pos] = 0;

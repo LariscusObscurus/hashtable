@@ -4,6 +4,7 @@
 #include "share.hpp"
 #include "hash.hpp"
 
+#define BOUNDARY	100
 #define MODE_ERROR	-1
 
 typedef enum {
