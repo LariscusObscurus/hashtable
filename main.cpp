@@ -174,8 +174,9 @@ int main (void)
 				break;
 			}
 			default:
-			cout << "This is not an option" << endl;
-			break;
+				cout << "This is not an option" << endl;
+				chosen = 0;
+				break;
 		}
 		cout << endl;
 		str = "";
