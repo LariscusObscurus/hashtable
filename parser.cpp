@@ -57,7 +57,7 @@ std::vector<share_t> parser::parse_csv(const std::string& in,
 				imp_share[j].close = str_to_flt(tokens[j * 9 +i]);
 				break;
 			case 7:
-				imp_share[j].volume = str_to_flt(tokens[j * 9 +i]);
+				imp_share[j].volume = str_to_long(tokens[j * 9 +i]);
 				break;
 			case 8:
 				imp_share[j].adjClose = str_to_flt(tokens[j * 9 +i]);
@@ -85,6 +85,14 @@ int parser::str_to_int (const std::string& str)
 float parser::str_to_flt (const std::string& str) 
 {
 	float result;
+	std::stringstream sstr(str);
+	sstr >> result;
+	return result;
+}
+
+long parser::str_to_long (const std::string& str)
+{
+	long result;
 	std::stringstream sstr(str);
 	sstr >> result;
 	return result;

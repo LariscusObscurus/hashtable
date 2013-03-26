@@ -21,5 +21,6 @@ private:
 	std::vector<std::string> split (const std::string& str, const std::string& del);
 	int str_to_int (const std::string& str);
 	float str_to_flt (const std::string& str);
+	long str_to_long (const std::string& str);
 };
 #endif
