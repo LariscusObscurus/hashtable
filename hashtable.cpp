@@ -117,7 +117,7 @@ unsigned hashtable::collision(unsigned old_pos, unsigned &counter)
 {
 	unsigned new_pos;
 
-	new_pos = (old_pos + square(counter++) % size);
+	new_pos = ((old_pos + square(counter++)) % size);
 	return new_pos;
 }
 
