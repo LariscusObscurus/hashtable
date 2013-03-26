@@ -2,6 +2,7 @@
 #define PARSER_HPP
 
 #include "share.hpp"
+#include <iostream>
 #include <sstream>
 #include <vector>
 
