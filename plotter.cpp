@@ -5,11 +5,11 @@ using namespace std;
 
 void Plotter::plot (const std::vector<share_t>& shares)
 {
-	float values[30];
+	float* values = shares.size() <= 30 ? new float[shares.size()] : new float[30];
 	float biggest = 0.0f;
 	float smallest = 9999999.0f;
 	float difference = 0.0f;
-	const int width = 30;
+	const int width = shares.size() <= 30 ? shares.size() : 30;
 	const int height = 20;
 	char drawArea[height * width];
 	memset((void*)&drawArea[0], ' ', height * width * sizeof(char));
@@ -26,13 +26,14 @@ void Plotter::plot (const std::vector<share_t>& shares)
 		}
 		values[i] = shares[i].close;
 	}
-	for (register int i = 0; i < height; i++)
+	for (register int i = 0; i < width; i++)
 	{
 		float newVal = values[i] - smallest;
 		int position = (int)(newVal / difference);
-		drawArea[i * width + position] = '*';
+		drawArea[position * width + i] = '*';
 	}
 	draw(shares[0].name, &values[0], &drawArea[0], width, height);
+	delete[] values;
 }
 
 void Plotter::draw (const std::string& name, const float* values, const char* drawArea, const int width, const int height)
