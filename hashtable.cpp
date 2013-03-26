@@ -21,8 +21,9 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 			hsh_vector[pos].value = hsh_val;
 			hsh_vector[pos].set = true;
 			if(!(n_add(hsh_val[0].name, pos))) {
-				throw "ADD_hsh_name_error";
+				result = false;
 			}
+
 			break;
 		}
 	}
@@ -54,7 +55,7 @@ bool hashtable::del(const std::string& in, omode_t mode)
 			
 			result = true;
 			if(!(n_del(hsh_vector[pos].value[0].name, pos))) {
-				throw "DEL_hsh_name_error";
+				result = false;
 			}
 			hsh_vector[pos].set = false;
 			check_other(pos, counter + 1, i + 1);
