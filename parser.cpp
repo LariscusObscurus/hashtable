@@ -64,7 +64,11 @@ std::vector<share_t> parser::parse_csv(const std::string& name, const std::strin
 			}
 		}
 	}
-	
+	for (int i = 0; i < imp_share.size(); i++) {
+		std::cout << imp_share[i].adjClose 
+			<< imp_share[i].name
+			<< std::endl;
+	}
 	return imp_share;
 }
 
