@@ -27,6 +27,7 @@ bool file_handling::load (const std::string& fileName, hashtable& table)
 	FILE* file = fopen(fileName.c_str(), "rb");
 	// read variables
 	int intValue = 0;
+	long longValue = 0;
 	float floatValue = 0;
 	// file settings
 	int corpCount = 0;
@@ -82,8 +83,8 @@ bool file_handling::load (const std::string& fileName, hashtable& table)
 			fread((void*)&floatValue, sizeof(float), 1, file);
 			share.close = floatValue;
 			// volume
-			fread((void*)&floatValue, sizeof(float), 1, file);
-			share.volume = floatValue;
+			fread((void*)&longValue, sizeof(long), 1, file);
+			share.volume = longValue;
 			// adjClose
 			fread((void*)&floatValue, sizeof(float), 1, file);
 			share.adjClose = floatValue;
@@ -116,6 +117,7 @@ bool file_handling::save (const std::string& fileName, const hashtable& table)
 	FILE* file = fopen(fileName.c_str(), "wb");
 	// write variables
 	int intValue = 0;
+	long longValue = 0;
 	float floatValue = 0;
 	// file settings
 	int corpCount = 0;
@@ -185,8 +187,8 @@ bool file_handling::save (const std::string& fileName, const hashtable& table)
 			floatValue = shares[j].close;
 			fwrite((const void*)&floatValue, sizeof(float), 1, file);
 			// write volume
-			floatValue = shares[j].volume;
-			fwrite((const void*)&floatValue, sizeof(float), 1, file);
+			longValue = shares[j].volume;
+			fwrite((const void*)&longValue, sizeof(long), 1, file);
 			// write adjClose
 			floatValue = shares[j].adjClose;
 			fwrite((const void*)&floatValue, sizeof(float), 1, file);

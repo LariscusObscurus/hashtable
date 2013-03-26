@@ -20,7 +20,7 @@ typedef struct Share
 	float high;
 	float low;
 	float close;
-	float volume;
+	long volume;
 	float adjClose;
 	Date_t date;
 	

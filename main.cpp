@@ -276,7 +276,7 @@ std::vector<share_t> add (void)
 	share.close = StringToNumber<float>(str);
 	cout << "Enter a volume value: ";
 	cin >> str;
-	share.volume = StringToNumber<float>(str);
+	share.volume = StringToNumber<long>(str);
 	cout << "Enter a adjusted closing value: ";
 	cin >> str;
 	share.adjClose = StringToNumber<float>(str);
