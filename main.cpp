@@ -239,14 +239,12 @@ void getName (std::string& str)
 {
 	cout << "Please enter a name: ";
 	cin >> str;
-	cout << endl;
 }
 
 void getContraction (std::string& str)
 {
 	cout << "Please enter a contraction: ";
 	cin >> str;
-	cout << endl;
 }
 
 std::vector<share_t> add (void)
