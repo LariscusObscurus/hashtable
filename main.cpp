@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 #include <cstdlib>
 #include "filehandling.hpp"	
 #include "hash.hpp"
@@ -18,6 +19,22 @@
 #define	EXIT	8
 
 using namespace std;
+
+template <typename T>
+std::string NumberToString (T Number)
+{
+	std::stringstream ss;
+	ss << Number;
+	return ss.str();
+}
+
+template <typename T>
+T StringToNumber (const std::string &Text)//Text not by const reference so that the function can be used with a 
+{                               //character array as argument
+	stringstream ss(Text);
+	T result;
+	return ss >> result ? result : 0;
+}
 
 void getMode (omode_t& mode);
 void getName (std::string& str);
@@ -49,7 +66,8 @@ int main (void)
 		<< "8.) EXIT   - Exit this programm.\n"
 		<< "Input: ";
 
-		cin >> chosen;
+		cin >> str;
+		chosen = StringToNumber<int>(str);
 		switch(chosen) {
 			case ADD: {
 				if (table->add(add()))
@@ -221,14 +239,12 @@ void getName (std::string& str)
 {
 	cout << "Please enter a name: ";
 	cin >> str;
-	cout << endl;
 }
 
 void getContraction (std::string& str)
 {
 	cout << "Please enter a contraction: ";
 	cin >> str;
-	cout << endl;
 }
 
 std::vector<share_t> add (void)

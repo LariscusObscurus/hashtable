@@ -5,11 +5,15 @@ using namespace std;
 
 void Plotter::plot (const std::vector<share_t>& shares)
 {
+	if (!shares.size())
+	{
+		return;
+	}
 	float* values = shares.size() <= 30 ? new float[shares.size()] : new float[30];
 	float biggest = 0.0f;
 	float smallest = 9999999.0f;
 	float difference = 0.0f;
-	const int width = shares.size() <= 30 ? shares.size() : 30;
+	const int width = shares.size() <= 30 ? (int)shares.size() : 30;
 	const int height = 20;
 	char drawArea[height * width];
 	memset((void*)&drawArea[0], ' ', height * width * sizeof(char));
@@ -32,21 +36,27 @@ void Plotter::plot (const std::vector<share_t>& shares)
 		int position = (int)(newVal / difference);
 		drawArea[position * width + i] = '*';
 	}
-	draw(shares[0].name, &values[0], &drawArea[0], width, height);
-	delete[] values;
-}
-
-void Plotter::draw (const std::string& name, const float* values, const char* drawArea, const int width, const int height)
-{
-	printf("%s - shares\n", name.c_str());
+	printf("%s - shares\n", shares[0].name.c_str());
 	for (register int i = 0; i < height; i++)
 	{
-		printf("%f.1 |", values[i]);
+		if (i == 0)
+		{
+			printf("%05.1f |", biggest);
+		}
+		else if (i == (height - 1))
+		{
+			printf("%05.1f |", smallest);
+		}
+		else
+		{
+			printf("      |");
+		}
 		for (register int j = 0; j < width; j++)
 		{
 			printf("%c", drawArea[i * width + j]);
 		}
 		printf("\n");
 	}
-	printf("+------------------------------\n");
+	printf("      +------------------------------\n");
+	delete[] values;
 }
