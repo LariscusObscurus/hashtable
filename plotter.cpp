@@ -5,7 +5,7 @@ using namespace std;
 
 void Plotter::plot (const std::vector<share_t>& shares)
 {
-	float values* = shares.size() <= 30 ? new float[shares.size()] : new float[30];
+	float* values = shares.size() <= 30 ? new float[shares.size()] : new float[30];
 	float biggest = 0.0f;
 	float smallest = 9999999.0f;
 	float difference = 0.0f;
@@ -33,6 +33,7 @@ void Plotter::plot (const std::vector<share_t>& shares)
 		drawArea[position * width + i] = '*';
 	}
 	draw(shares[0].name, &values[0], &drawArea[0], width, height);
+	delete[] values;
 }
 
 void Plotter::draw (const std::string& name, const float* values, const char* drawArea, const int width, const int height)
