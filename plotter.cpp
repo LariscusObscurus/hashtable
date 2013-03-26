@@ -30,6 +30,7 @@ void Plotter::plot (const std::vector<share_t>& shares)
 		}
 		values[i] = shares[i].close;
 	}
+	difference = biggest - smallest;
 	for (register int i = 0; i < width; i++)
 	{
 		float newVal = values[i] - smallest;
