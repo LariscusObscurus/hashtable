@@ -127,8 +127,9 @@ int main (void)
 				{
 					cout << "'" << str << "' exist and it's values are:\n";
 					cout << "+------------------------------" << "\n";
-					for (int i = 0; i < (int)shares.size(); i++) 
+					for (int i = 0; i < (int)shares.size(); i++)
 					{
+						cout << shares[i].date.month << "/" << shares[i].date.day << "/" << shares[i].date.year << "\n";
 						cout << "Open: " << shares[i].open << "\n";
 						cout << "High: " << shares[i].high << "\n";
 						cout << "Low: " << shares[i].low << "\n";
