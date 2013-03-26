@@ -32,10 +32,12 @@ int main (void)
 	IPlotter* plotter = new dynamic_cast<IPlotter*>(new Plotter());
 	
 	int chosen;
+	std::string str;
+	std::string name;
+	std::string cont;
+	omode_t mode;
 
 	while(chosen != EXIT) {
-		std::string str;
-		omode_t mode;
 		cout << "MENU:\n"
 		<< "1.) ADD    - Add an additional entry to the hashtable.\n"
 		<< "2.) DEL    - Delete an entry in the hashtable.\n"
@@ -73,6 +75,10 @@ int main (void)
 				break;
 			}
 			case IMPORT: {
+				cout << "Enter a name: ";
+				cin >> name;
+				cout << "Enter a cont: ";
+				cin >> cont;
 				break;
 			}
 			case SEARCH: {
@@ -95,6 +101,7 @@ int main (void)
 			cout << "This is not an option" << endl;
 			break;
 		}
+		cout << endl;
 	}
 	return EXIT_SUCCESS;
 }

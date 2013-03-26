@@ -93,7 +93,9 @@ bool file_handling::load (const std::string& fileName, hashtable& table)
 		// get key
 		unsigned key = hashString(shares[0].cont) % table.size;
 		// set node
-		hashtable::node node = {shares, true};
+		hashtable::node node;
+		node.value = shares;
+		node.set = true;
 		// add to hash table
 		hash[key] = node;
 		// set reference
@@ -117,7 +119,6 @@ bool file_handling::save (const std::string& fileName, const hashtable& table)
 	float floatValue = 0;
 	// file settings
 	int corpCount = 0;
-	int shareCount = 0;
 	// save indices
 	std::vector<unsigned> indices(0);
 	
@@ -126,7 +127,7 @@ bool file_handling::save (const std::string& fileName, const hashtable& table)
 		return false;
 	}
 	
-	for (register unsigned i = 0; i < size; i++)
+	for (unsigned i = 0; i < size; i++)
 	{
 		// check if hash is set
 		if (hash[i].set)
@@ -140,22 +141,24 @@ bool file_handling::save (const std::string& fileName, const hashtable& table)
 	for (register int i = 0; i < corpCount; i++)
 	{
 		std::vector<share_t> shares = hash[indices[i]].value;
+		std::string name = shares[0].name;
+		std::string cont = shares[0].cont;
 		int shareSize = (int)shares.size();
 		// write share count
 		fwrite((const void*)&shareSize, sizeof(int), 1, file);
 		// write name
-		intValue = (int)shares[i].name.size();
+		intValue = (int)name.size();
 		fwrite((const void*)&intValue, sizeof(int), 1, file);
-		for (register int k = 0; k < intValue; k++)
+		for (register int j = 0; j < intValue; j++)
 		{
-			fputc(shares[j].name[k], file);
+			fputc(name[j], file);
 		}
 		// write cont
-		intValue = shares[j].cont.size();
+		intValue = (int)cont.size();
 		fwrite((const void*)&intValue, sizeof(int), 1, file);
-		for (register int k = 0; k < intValue; k++)
+		for (register int j = 0; j < intValue; j++)
 		{
-			fputc(shares[j].cont[k], file);
+			fputc(cont[j], file);
 		}
 		// write share
 		for (register int j = 0; j < shareSize; j++)
