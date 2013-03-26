@@ -1,15 +1,16 @@
 #include "parser.hpp"
 
-parser::parser(const std::string& input) 
+parser::parser(void) 
 {
-	in = input;
 }
 
 parser::~parser (void)
 {
 }
 
-std::vector<share_t> parser::parse_csv(const std::string& name, const std::string& cont) 
+std::vector<share_t> parser::parse_csv(const std::string& in, 
+			const std::string& name, 
+			const std::string& cont) 
 {
 	std::vector<std::string> tokens;
 	std::vector<share_t> imp_share;

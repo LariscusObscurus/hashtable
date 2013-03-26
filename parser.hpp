@@ -11,10 +11,12 @@ class parser
 	std::string in;
 
 public:
-	parser(const std::string& in);
+	parser(void);
 	~parser();
 	
-	std::vector<share_t> parse_csv(const std::string& name, const std::string& cont);
+	std::vector<share_t> parse_csv(const std::string& in, 
+			const std::string& name, 
+			const std::string& cont);
 private:
 	std::vector<std::string> split (const std::string& str, const std::string& del);
 	int str_to_int (const std::string& str);
