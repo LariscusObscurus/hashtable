@@ -15,8 +15,14 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 
 	for (unsigned i = BOUNDARY; i > 0; i--) {
 	 	if (hsh_vector[pos].set) {
-			if ((hsh_vector[pos].value.name == hsh_val[0].name) 
-			&& (hsh_vector[pos].value.cont == hsh_val[0].cont)) {
+			if ((hsh_vector[pos].value[0].name == hsh_val[0].name) 
+			&& (hsh_vector[pos].value[0].cont == hsh_val[0].cont)) {
+
+				
+				hsh_vector[pos].value.insert(
+					hsh_vector[pos].value.begin(), 
+					hsh_val.begin(), 
+					hsh_val.end());
 			} else {
 		 		pos = collision(pos, counter);
 			}
