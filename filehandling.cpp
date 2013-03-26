@@ -1,8 +1,9 @@
 #include "filehandling.hpp"
 #include "parser.hpp"
 
-std::vector<share_t> file_handling::import(const std::string& name, const std::string& cont)
+std::vector<share_t> file_handling::import(const std::string& fileName, const std::string& name, const std::string& cont)
 {
+	FILE* fp = fopen(fileName.c_str(), "r+");
 	if (fp)
 	{
 		fseek(fp, 0, SEEK_END);
@@ -14,6 +15,7 @@ std::vector<share_t> file_handling::import(const std::string& name, const std::s
 		delete[] buf;
 		parser prs_text(text);
 		return prs_text.parse_csv(name, cont);
+		fclose(fp);
 	}
 	return std::vector<share_t>(0);
 }
