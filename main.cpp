@@ -34,6 +34,8 @@ int main (void)
 	int chosen;
 
 	while(chosen != EXIT) {
+		std::string str;
+		omode_t mode;
 		cout << "MENU:\n"
 		<< "1.) ADD    - Add an additional entry to the hashtable.\n"
 		<< "2.) DEL    - Delete an entry in the hashtable.\n"
@@ -58,8 +60,6 @@ int main (void)
 				break;
 			}
 			case DEL: {
-				std::string str;
-				omode_t mode;
 				del(str, mode);
 				
 				if (table.del(str, mode))
@@ -101,7 +101,7 @@ int main (void)
 
 void getMode (omode_t& mode)
 {
-	cout << "Do you wish do enter a new or a contraction? (1 = name, 2 = contraction)" << endl;
+	cout << "Do you wish do enter a name or a contraction? (1 = name, 2 = contraction)" << endl;
 	while (true)
 	{
 		int result = 0;
