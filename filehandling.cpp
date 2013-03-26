@@ -93,7 +93,7 @@ bool file_handling::load (const std::string& fileName, hashtable& table)
 		// get key
 		unsigned key = hashString(shares[0].cont) % table.size;
 		// set node
-		table::node node = {shares, true};
+		hashtable::node node = {shares, true};
 		// add to hash table
 		hash[key] = node;
 		// set reference
@@ -144,7 +144,7 @@ bool file_handling::save (const std::string& fileName, const hashtable& table)
 		// write share count
 		fwrite((const void*)&shareSize, sizeof(int), 1, file);
 		// write name
-		intValue = (int)shares[j].name.size();
+		intValue = (int)shares[i].name.size();
 		fwrite((const void*)&intValue, sizeof(int), 1, file);
 		for (register int k = 0; k < intValue; k++)
 		{

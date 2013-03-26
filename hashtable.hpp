@@ -16,6 +16,7 @@ class HashFile;
 
 class hashtable {
 	friend class HashFile;
+	friend class file_handling;
 	
 	struct node {
 		std::vector <share_t> value;

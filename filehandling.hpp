@@ -3,6 +3,8 @@
 #include <cstdio>
 #include <string>
 #include <vector>
+#include "hash.hpp"
+#include "hashtable.hpp"
 #include "share.hpp"
 
 class file_handling
