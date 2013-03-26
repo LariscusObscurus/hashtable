@@ -12,7 +12,7 @@ hashtable::~hashtable() {}
 bool hashtable::add(std::vector<share_t> hsh_val)
 {
 	bool result = false;
-	unsigned pos = hashString(hsh_val[0].cont);
+	unsigned pos = hashString(hsh_val[0].cont) % size;
 	unsigned counter = 1;
 
 	for (unsigned i = BOUNDARY; i > 0; i--) {
@@ -53,17 +53,17 @@ bool hashtable::del(const std::string& in, omode_t mode)
 
 	switch(mode) {
 	case NAME:
-		temp = hashString(in);
+		temp = hashString(in) % size;
 		pos = (unsigned)hsh_name[temp];
 		break;
 	case CONT:
-		pos = hashString(in);
+		pos = hashString(in) % size;
 		break;
 	}
 
 	for (unsigned i = BOUNDARY; i > 0; i--) {
 		if (hsh_vector[pos].set && 
-		(hashString(hsh_vector[pos].value[0].cont) == pos)) {
+		((hashString(hsh_vector[pos].value[0].cont) % size) == pos)) {
 			
 			result = true;
 			if(!(n_del(hsh_vector[pos].value[0].name, pos))) {
@@ -90,17 +90,17 @@ bool hashtable::find(const std::string& in,
 
 	switch(mode) {
 	case CONT:
-		pos = hashString(in);
+		pos = hashString(in) % size;
 		break;
 	case NAME:
-		temp = hashString(in);
+		temp = hashString(in) % size;
 		pos = (unsigned)hsh_name[temp];
 		break;
 	}
 
 	for (unsigned i = BOUNDARY; i > 0; i--) {
 		if (hsh_vector[pos].set &&
-		hashString(hsh_vector[pos].value[0].cont) == pos) {
+		(hashString(hsh_vector[pos].value[0].cont) % size) == pos) {
 			
 
 			answer = hsh_vector[pos].value;
@@ -133,7 +133,7 @@ void hashtable::check_other(unsigned pos, unsigned counter, unsigned iterator)
 
 	for (unsigned i = iterator; i > size; i--) {
 		if (hsh_vector[n_pos].set && 
-		hashString(hsh_vector[n_pos].value[0].cont) == pos) {
+		(hashString(hsh_vector[n_pos].value[0].cont) % size) == pos) {
 
 			hsh_vector[l_pos].value = hsh_vector[n_pos].value;
 			hsh_vector[l_pos].set = true;
@@ -147,7 +147,7 @@ void hashtable::check_other(unsigned pos, unsigned counter, unsigned iterator)
 bool hashtable::n_add(const std::string& name, unsigned value)
 {
 	bool result = false;
-	unsigned pos = hashString(name);
+	unsigned pos = hashString(name) % size;
 	unsigned counter = 1;
 	for (unsigned i = BOUNDARY; i > 0; i--) {
 		if(hsh_name[pos] == 0) {
@@ -165,7 +165,7 @@ bool hashtable::n_add(const std::string& name, unsigned value)
 bool hashtable::n_del(const std::string& name, unsigned value)
 {
 	bool result = false;
-	unsigned pos = hashString(name);
+	unsigned pos = hashString(name) % size;
 	unsigned counter = 1;
 	for (unsigned i = BOUNDARY; i > size; i--) {
 		if (hsh_name[pos] == value) {
