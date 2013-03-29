@@ -35,14 +35,12 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 			//	std::cout << "coll is: " << pos << std::endl;
 			}
 		} else {
-			if(!(n_add(hsh_val[0].name, hsh_val[0].name, pos))) {
+			if(!(n_add(hsh_val[0].name, hsh_val[0].cont, pos))) {
 				return result;
 			}
 			result = true;
 			hsh_vector[pos].set = true;
 			hsh_vector[pos].value = hsh_val;
-			// hsh_name[hashString(hsh_val[0].name)].set = true;
-			// hsh_name[hashString(hsh_val[0].name)].set = pos;
 			break;
 		}
 	}
