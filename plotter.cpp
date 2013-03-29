@@ -24,7 +24,7 @@ void Plotter::plot (const std::vector<share_t>& shares)
 	char drawArea[height * width];
 	memset((void*)&drawArea[0], ' ', height * width * sizeof(char));
 	
-	for (register int i = 0; i < (int)shares.size(); i++)
+	for (register int i = 0; i < width; i++)
 	{
 		if (biggest < shares[i].close)
 		{
