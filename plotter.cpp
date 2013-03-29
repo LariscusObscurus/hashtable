@@ -53,5 +53,8 @@ void Plotter::plot (const std::vector<share_t>& shares)
 		printf("\n");
 	}
 	printf("      +------------------------------\n");
+	printf("    %d/%d/%d                 %d/%d/%d\n",
+		shares[0].date.month, shares[0].date.day, shares[0].date.year,
+		shares[width-1].date.month, shares[width-1].date.day, shares[width-1].date.year);
 	delete[] values;
 }
