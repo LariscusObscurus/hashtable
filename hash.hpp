@@ -6,7 +6,6 @@
 
 inline unsigned hashString (const std::string& str)
 {
-	return 4;
 	unsigned result = 0;
 	unsigned n = (unsigned)str.size();
 	
