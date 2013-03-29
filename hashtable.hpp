@@ -1,13 +1,13 @@
 #ifndef HASHTABLE_H
-#define HASHTABLE_H
-#include <vector>
-#include "share.hpp"
-#include "hash.hpp"
+#define HASHTABLE_H 
 
-#define BOUNDARY	100
-#define MODE_ERROR	-1
+#include <vector> 
+#include "share.hpp" 
+#include "hash.hpp" 
 
-typedef enum {
+#define BOUNDARY		100 
+
+typedef enum { 
 	NAME,
 	CONT
 }omode_t;

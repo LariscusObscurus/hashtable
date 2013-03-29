@@ -9,6 +9,7 @@ hashtable::hashtable(void) : size(1621),
 hashtable::~hashtable() {}
 
 /*Einen Eintrag in dem hashStringtable einfügen.*/
+/* FIXME: Collisions abchecken, gleiche Namen oder Kürzel*/
 bool hashtable::add(std::vector<share_t> hsh_val)
 {
 	bool result = false;
@@ -26,6 +27,12 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 					hsh_val.begin(), 
 					hsh_val.end());
 				result = true;
+			} else if (
+			((hsh_vector[pos].value[0].name == hsh_val[0].name) 
+			&& !(hsh_vector[pos].value[0].cont == hsh_val[0].cont))
+			||(!(hsh_vector[pos].value[0].name == hsh_val[0].name) 
+			&& (hsh_vector[pos].value[0].cont == hsh_val[0].cont))){
+				return result;
 			} else {
 		 		pos = collision(pos, counter);
 			}
