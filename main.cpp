@@ -72,11 +72,11 @@ int main (void)
 			case ADD: {
 				if (table->add(add()))
 				{
-					cout << "Added." << endl;
+					cout << "Added.\n";
 				}
 				else
 				{
-					cout << "Not added." << endl;
+					cout << "Not added.\n";
 				}
 				break;
 			}
@@ -85,11 +85,11 @@ int main (void)
 				
 				if (table->del(str, mode))
 				{
-					cout << "Deleted." << endl;
+					cout << "Deleted.\n";
 				}
 				else
 				{
-					cout << "Not deleted." << endl;
+					cout << "Not deleted.\n";
 				}
 				break;
 			}
@@ -102,12 +102,12 @@ int main (void)
 				
 				if (!shares.size())
 				{
-					cout << "An error occured." << endl;
+					cout << "An error occured.\n";
 				}
 				else
 				{
 					table->add(shares);
-					cout << "Added content from file '" << str << "'." << endl;
+					cout << "Added content from file '" << str << "'.\n";
 				}
 				break;
 			}
@@ -142,7 +142,7 @@ int main (void)
 				}
 				else
 				{
-					cout << "Couldn't find '" << str << "'." << endl;
+					cout << "Couldn't find '" << str << "'.\n";
 				}
 				break;
 			}
@@ -164,7 +164,7 @@ int main (void)
 				}
 				else
 				{
-					cout << "Couldn't find '" << str << "'." << endl;
+					cout << "Couldn't find '" << str << "'.\n";
 				}
 				break;
 			}
@@ -173,11 +173,11 @@ int main (void)
 				cin >> str;
 				if (file_handling::save(str, *table))
 				{
-					cout << "File with name '" << str << "' were successfull saved." << endl;
+					cout << "File with name '" << str << "' were successfull saved.\n";
 				}
 				else
 				{
-					cout << "An error occured while writing process." << endl;
+					cout << "An error occured while writing process.\n";
 				}
 				break;
 			}
@@ -186,20 +186,20 @@ int main (void)
 				cin >> str;
 				if (file_handling::load(str, *table))
 				{
-					cout << "File with name '" << str << "' were successfull saved." << endl;
+					cout << "File with name '" << str << "' were successfull saved.\n";
 				}
 				else
 				{
-					cout << "An error occured while writing process." << endl;
+					cout << "An error occured while writing process.\n";
 				}
 				break;
 			}
 			case EXIT: {
-				cout << "Bye." << endl;
+				cout << "Bye.\n";
 				break;
 			}
 			default:
-				cout << "This is not an option" << endl;
+				cout << "This is not an option\n";
 				chosen = 0;
 				break;
 		}
