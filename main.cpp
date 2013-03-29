@@ -106,8 +106,14 @@ int main (void)
 				}
 				else
 				{
-					table->add(shares);
-					cout << "Added content from file '" << str << "'.\n";
+					if (table->add(shares))
+					{
+						cout << "Added content from file '" << str << "'.\n";
+					}
+					else
+					{
+						cout << "Couldn't added content from file '" << str << "'.\n";
+					}
 				}
 				break;
 			}
