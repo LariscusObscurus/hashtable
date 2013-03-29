@@ -1,13 +1,13 @@
 #ifndef HASHTABLE_H
-#define HASHTABLE_H
-#include <vector>
-#include "share.hpp"
-#include "hash.hpp"
+#define HASHTABLE_H 
 
-#define BOUNDARY	100
-#define MODE_ERROR	-1
+#include <vector> 
+#include "share.hpp" 
+#include "hash.hpp" 
 
-typedef enum {
+#define BOUNDARY		100 
+
+typedef enum { 
 	NAME,
 	CONT
 }omode_t;
@@ -36,7 +36,7 @@ public:
 	bool find(const std::string& in, std::vector<share_t> &answer, omode_t mode);
 
 private:
-	bool n_add(const std::string& name, unsigned value);
+	bool n_add(const std::string& name, const std::string& cont, unsigned value);
 	bool n_del(const std::string& name, unsigned value);
 	void n_check_other(unsigned pos, unsigned counter, unsigned iterator);
 
