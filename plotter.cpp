@@ -36,16 +36,18 @@ void Plotter::plot (const std::vector<share_t>& shares)
 		}
 		values[i] = shares[i].close;
 	}
-	difference = biggest - smallest;
 	for (register int i = width - 1; i >= 0; i--)
 	{
+#ifdef _DEBUG
+	cout << "before shares.size() = " << shares.size() << "; i = " << i << "\n";
+#endif
 		float newVal = values[i] - smallest;
 		int position = 20 - (int)(newVal / difference * 20.0f);
 		drawArea[position * width + i] = '*';
-	}
 #ifdef _DEBUG
-	cout << "sizeof(shares) = " << shares.size() << "\n";
+	cout << "after shares.size() = " << shares.size() << "; i = " << i << "\n";
 #endif
+	}
 	for (register int i = 0; i < height; i++)
 	{
 		if (i == 0)
