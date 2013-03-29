@@ -16,7 +16,7 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 	unsigned pos = hashString(hsh_val[0].cont) % size;
 	unsigned counter = 1;
 
-	if (hsh_vector[hsh_name[check]].value[0].cont != hsh_val[0].cont) {
+	if ((hsh_vector[hsh_name[check]].value.size() == 0) && (hsh_vector[hsh_name[check]].value[0].cont != hsh_val[0].cont)) {
 		return result;
 	}
 
