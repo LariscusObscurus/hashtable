@@ -128,7 +128,7 @@ int main (void)
 					int size = shares.size() < 30 ? (int)shares.size() : 30;
 					cout << "'" << str << "' exist and it's values are:\n";
 					cout << "+------------------------------" << "\n";
-					for (int i = 0; i < (int)shares.size(); i++)
+					for (int i = 0; i < size; i++)
 					{
 						cout << shares[i].date.month << "/" << shares[i].date.day << "/" << shares[i].date.year << "\n";
 						cout << "Open: " << shares[i].open << "\n";
