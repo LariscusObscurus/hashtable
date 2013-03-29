@@ -43,9 +43,11 @@ void Plotter::plot (const std::vector<share_t>& shares)
 		int position = 20 - (int)((newVal / difference) * 20.0f);
 		drawArea[position * width + (width - i - 1)] = '*';
 	}
-	printf("=====================================\n");
-	printf("%s shares\n", shares[0].name.c_str());
-	printf("=====================================\n");
+	printf("========================================================\n");
+	printf("%s shares from %d/%d/%d to %d/%d/%d\n", shares[0].name.c_str(),
+		shares[width-1].date.month, shares[width-1].date.day, shares[width-1].date.year,
+		shares[0].date.month, shares[0].date.day, shares[0].date.year);
+	printf("========================================================\n");
 	for (register int i = 0; i < height; i++)
 	{
 		if (i == 0)
