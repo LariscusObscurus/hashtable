@@ -125,6 +125,7 @@ int main (void)
 				
 				if (table->find(str, shares, mode))
 				{
+					int size = shares.size() < 30 ? (int)shares.size() : 30;
 					cout << "'" << str << "' exist and it's values are:\n";
 					cout << "+------------------------------" << "\n";
 					for (int i = 0; i < (int)shares.size(); i++)
