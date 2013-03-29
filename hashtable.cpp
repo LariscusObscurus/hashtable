@@ -12,8 +12,13 @@ hashtable::~hashtable() {}
 bool hashtable::add(std::vector<share_t> hsh_val)
 {
 	bool result = false;
+	unsigned check = hashString(hsh_val[0].name) % size;
 	unsigned pos = hashString(hsh_val[0].cont) % size;
 	unsigned counter = 1;
+
+	if (hsh_vector[hsh_name[check]].value[0].cont != hsh_val[0].cont) {
+		return result;
+	}
 
 	for (unsigned i = BOUNDARY; i > 0; i--) {
 	 	if (hsh_vector[pos].set) {
@@ -35,7 +40,7 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 			//	std::cout << "coll is: " << pos << std::endl;
 			}
 		} else {
-			if(!(n_add(hsh_val[0].name, hsh_val[0].name, pos))) {
+			if(!(n_add(hsh_val[0].name, pos))) {
 				return result;
 			}
 			result = true;
@@ -154,16 +159,13 @@ void hashtable::check_other(unsigned pos, unsigned counter, unsigned iterator)
 	}
 }
 
-bool hashtable::n_add(const std::string& name, const std::string& cont, unsigned value)
+bool hashtable::n_add(const std::string& name, unsigned value)
 {
 	bool result = false;
 	unsigned pos = hashString(name) % size;
 	unsigned counter = 1;
 	for (unsigned i = BOUNDARY; i > 0; i--) {
-		if ((hsh_name[pos] == value) 
-		&& (hsh_vector[value].value[0].cont != cont)) {
-			return result;
-		} else if(hsh_name[pos] == 0) {
+		if(hsh_name[pos] == 0) {
 			result = true;
 			hsh_name[pos] = value;
 			break;
