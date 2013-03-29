@@ -147,7 +147,7 @@ void hashtable::check_other(unsigned pos, unsigned counter, unsigned iterator)
 	unsigned l_pos = pos;
 	unsigned n_pos = collision(pos, counter);
 
-	for (unsigned i = iterator; i > size; i--) {
+	for (unsigned i = iterator; i > 0; i--) {
 		if (hsh_vector[n_pos].set && 
 		(hashString(hsh_vector[n_pos].value[0].cont) % size) == pos) {
 
@@ -182,7 +182,7 @@ bool hashtable::n_del(const std::string& name, unsigned value)
 	bool result = false;
 	unsigned pos = hashString(name) % size;
 	unsigned counter = 1;
-	for (unsigned i = BOUNDARY; i > size; i--) {
+	for (unsigned i = BOUNDARY; i > 0; i--) {
 		if (hsh_name[pos] == value) {
 			result = true;
 			hsh_name[pos] = 0;
@@ -201,7 +201,7 @@ void hashtable::n_check_other(unsigned pos, unsigned counter, unsigned iterator)
 	unsigned l_pos = pos;
 	unsigned n_pos = collision(pos, counter);
 
-	for (unsigned i = iterator; i > size; i--) {
+	for (unsigned i = iterator; i > 0; i--) {
 		if (hsh_name[n_pos] != 0) {
 			hsh_name[l_pos] = hsh_name[n_pos];
 			hsh_name[n_pos] = 0;

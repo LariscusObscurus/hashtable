@@ -112,7 +112,7 @@ int main (void)
 					}
 					else
 					{
-						cout << "Couldn't added content from file '" << str << "'.\n";
+						cout << "Couldn't add content from file '" << str << "'.\n";
 					}
 				}
 				break;
