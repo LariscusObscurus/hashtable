@@ -125,9 +125,6 @@ int main (void)
 				
 				if (table->find(str, shares, mode))
 				{
-#ifdef _DEBUG
-					cout << "shares.size() = " << shares.size() << "\n";
-#endif
 					cout << "'" << str << "' exist and it's values are:\n";
 					cout << "+------------------------------" << "\n";
 					for (int i = 0; i < (int)shares.size(); i++)
@@ -162,9 +159,6 @@ int main (void)
 				
 				if (table->find(str, shares, mode))
 				{
-#ifdef _DEBUG
-					cout << "shares.size() = " << shares.size() << "\n";
-#endif
 					plotter->plot(shares);
 				}
 				else
