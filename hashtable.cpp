@@ -41,6 +41,8 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 			result = true;
 			hsh_vector[pos].set = true;
 			hsh_vector[pos].value = hsh_val;
+			// hsh_name[hashString(hsh_val[0].name)].set = true;
+			// hsh_name[hashString(hsh_val[0].name)].set = pos;
 			break;
 		}
 	}
