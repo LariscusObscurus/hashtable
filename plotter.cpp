@@ -41,25 +41,11 @@ void Plotter::plot (const std::vector<share_t>& shares)
 	{
 		float newVal = values[i] - smallest;
 		int position = 20 - (int)((newVal / difference) * 20.0f);
-#ifdef _DEBUG
-		cout << "newVal = " << newVal << "; position = " << position << "\n";
-#endif
 		drawArea[position * width + i] = '*';
 	}
 	for (register int i = 0; i < height; i++)
 	{
-		if (i == 0)
-		{
-			printf("%05.1f |", biggest);
-		}
-		else if (i == (height - 1))
-		{
-			printf("%05.1f |", smallest);
-		}
-		else
-		{
-			printf("      |");
-		}
+		printf("%05.1f |", values[i]);
 		for (register int j = 0; j < width; j++)
 		{
 			printf("%c", drawArea[i * width + j]);
