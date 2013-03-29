@@ -1,6 +1,6 @@
 #include "hashtable.hpp"
 
-hashtable::node::node() : set(false), value(std::vector<share_t>(0)) {};
+hashtable::node::node() : value(std::vector<share_t>(0)), set(false) {};
 
 hashtable::hashtable(void) : size(1621),
 	hsh_vector(std::vector<node>(size)),
