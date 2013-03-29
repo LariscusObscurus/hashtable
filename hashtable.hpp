@@ -36,7 +36,7 @@ public:
 	bool find(const std::string& in, std::vector<share_t> &answer, omode_t mode);
 
 private:
-	bool n_add(const std::string& name, unsigned value);
+	bool n_add(const std::string& name, const std::string& cont, unsigned value);
 	bool n_del(const std::string& name, unsigned value);
 	void n_check_other(unsigned pos, unsigned counter, unsigned iterator);
 
