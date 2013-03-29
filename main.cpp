@@ -179,7 +179,7 @@ int main (void)
 				cin >> str;
 				if (file_handling::save(str, *table))
 				{
-					cout << "File with name '" << str << "' were successfull saved.\n";
+					cout << "File with name '" << str << "' were successfully saved.\n";
 				}
 				else
 				{
@@ -192,7 +192,7 @@ int main (void)
 				cin >> str;
 				if (file_handling::load(str, *table))
 				{
-					cout << "File with name '" << str << "' were successfull saved.\n";
+					cout << "File with name '" << str << "' were successfully loaded.\n";
 				}
 				else
 				{
