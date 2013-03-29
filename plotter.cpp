@@ -41,11 +41,25 @@ void Plotter::plot (const std::vector<share_t>& shares)
 	{
 		float newVal = values[i] - smallest;
 		int position = 20 - (int)((newVal / difference) * 20.0f);
-		drawArea[position * width + i] = '*';
+		drawArea[position * width + (width - i - 1)] = '*';
 	}
+	printf("=====================================\n");
+	printf("%s shares\n", shares[0].name.c_str());
+	printf("=====================================\n");
 	for (register int i = 0; i < height; i++)
 	{
-		printf("%05.1f |", values[i]);
+		if (i == 0)
+		{
+			printf("%05.1f |", biggest);
+		}
+		else if (i == (height - 1))
+		{
+			printf("%05.1f |", smallest);
+		}
+		else
+		{
+			printf("      |");
+		}
 		for (register int j = 0; j < width; j++)
 		{
 			printf("%c", drawArea[i * width + j]);
@@ -54,7 +68,7 @@ void Plotter::plot (const std::vector<share_t>& shares)
 	}
 	printf("      +------------------------------\n");
 	printf("    %d/%d/%d                 %d/%d/%d\n",
-		shares[0].date.month, shares[0].date.day, shares[0].date.year,
-		shares[width-1].date.month, shares[width-1].date.day, shares[width-1].date.year);
+		shares[width-1].date.month, shares[width-1].date.day, shares[width-1].date.year,
+		shares[0].date.month, shares[0].date.day, shares[0].date.year);
 	delete[] values;
 }
