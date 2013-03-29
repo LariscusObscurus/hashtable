@@ -2,6 +2,7 @@
 #define HASHTABLE_H 
 
 #include <vector> 
+#include <iostream>
 #include "share.hpp" 
 #include "hash.hpp" 
 

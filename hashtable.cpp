@@ -8,8 +8,7 @@ hashtable::hashtable(void) : size(1621),
 
 hashtable::~hashtable() {}
 
-/*Einen Eintrag in dem hashStringtable einfügen.*/
-/* FIXME: Collisions abchecken, gleiche Namen oder Kürzel*/
+/*Einen Eintrag in dem hashtable einfügen.*/
 bool hashtable::add(std::vector<share_t> hsh_val)
 {
 	bool result = false;
@@ -33,15 +32,15 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 				return result;
 			} else {
 		 		pos = collision(pos, counter);
+			//	std::cout << "coll is: " << pos << std::endl;
 			}
 		} else {
-			result = true;
-			hsh_vector[pos].value = hsh_val;
-			hsh_vector[pos].set = true;
 			if(!(n_add(hsh_val[0].name, hsh_val[0].name, pos))) {
-				result = false;
+				return result;
 			}
-
+			result = true;
+			hsh_vector[pos].set = true;
+			hsh_vector[pos].value = hsh_val;
 			break;
 		}
 	}
@@ -49,7 +48,7 @@ bool hashtable::add(std::vector<share_t> hsh_val)
 	
 }
 
-/*Einen Eintrag aus dem hashStringtable entfernen.*/
+/*Einen Eintrag aus dem hashtable entfernen.*/
 bool hashtable::del(const std::string& in, omode_t mode)
 {
 	bool result = false;
@@ -105,13 +104,18 @@ bool hashtable::find(const std::string& in,
 	}
 
 	for (unsigned i = BOUNDARY; i > 0; i--) {
-		if (hsh_vector[pos].set &&
-		(hashString(hsh_vector[pos].value[0].cont) % size) == pos) {
+		if (hsh_vector[pos].set) {
 			
-
+			if ((hsh_vector[pos].value[0].cont == in) 
+			|| (hsh_vector[pos].value[0].name == in)) {
+				
 			answer = hsh_vector[pos].value;
 			result = true;
 			break;
+			} else {
+				pos = collision(pos, counter);
+			//	std::cout << "coll is: " << pos << std::endl;
+			}
 		} else {
 			pos = collision(pos, counter);
 		}
@@ -156,13 +160,13 @@ bool hashtable::n_add(const std::string& name, const std::string& cont, unsigned
 	unsigned pos = hashString(name) % size;
 	unsigned counter = 1;
 	for (unsigned i = BOUNDARY; i > 0; i--) {
-		if(hsh_name[pos] == 0) {
+		if ((hsh_name[pos] == value) 
+		&& (hsh_vector[value].value[0].cont != cont)) {
+			return result;
+		} else if(hsh_name[pos] == 0) {
 			result = true;
 			hsh_name[pos] = value;
 			break;
-		} else if ((hsh_name[pos] == value) 
-		&& (hsh_vector[value].value[0].cont != cont)) {
-			return result;
 		} else {
 			pos = collision(pos, counter);
 		}
