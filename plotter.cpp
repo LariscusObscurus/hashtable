@@ -1,5 +1,9 @@
 #include "plotter.hpp"
+#ifdef _DEBUG
+#include <iostream>
+#endif
 #include <cstdio>
+#include <cfloat>
 
 using namespace std;
 
@@ -11,16 +15,16 @@ void Plotter::plot (const std::vector<share_t>& shares)
 		printf("There are no shares to plot?!\n");
 		return;
 	}
-	float* values = shares.size() <= 30 ? new float[shares.size()] : new float[30];
-	float biggest = 0.0f;
-	float smallest = 9999999.0f;
+	float* values = shares.size() < 30 ? new float[shares.size()] : new float[30];
+	float biggest = FLT_MIN;
+	float smallest = FLT_MAX;
 	float difference = 0.0f;
-	const int width = shares.size() <= 30 ? (int)shares.size() : 30;
+	const int width = shares.size() < 30 ? (int)shares.size() : 30;
 	const int height = 20;
 	char drawArea[height * width];
 	memset((void*)&drawArea[0], ' ', height * width * sizeof(char));
 	
-	for (register int i = 0; i < 0; i++)
+	for (register int i = 0; i < (int)shares.size(); i++)
 	{
 		if (biggest < shares[i].close)
 		{
@@ -33,13 +37,15 @@ void Plotter::plot (const std::vector<share_t>& shares)
 		values[i] = shares[i].close;
 	}
 	difference = biggest - smallest;
-	for (register int i = 0; i < width; i++)
+	for (register int i = width - 1; i >= 0; i--)
 	{
 		float newVal = values[i] - smallest;
-		int position = (int)(newVal / difference);
+		int position = 20 - (int)(newVal / difference * 20.0f);
 		drawArea[position * width + i] = '*';
 	}
-	printf("%s - shares\n", shares[0].name.c_str());
+#ifdef _DEBUG
+	cout << "sizeof(shares) = " << shares.size() << "\n";
+#endif
 	for (register int i = 0; i < height; i++)
 	{
 		if (i == 0)

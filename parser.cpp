@@ -1,4 +1,7 @@
 #include "parser.hpp"
+#ifdef _DEBUG
+#include <iostream>
+#endif
 
 parser::parser(void) 
 {
@@ -26,7 +29,11 @@ std::vector<share_t> parser::parse_csv(const std::string& in,
 		pos = in.find_first_of (delimiters, l_pos);
 	}
 	
+	
 	imp_share = std::vector<share_t>(tokens.size() / 9);
+#ifdef _DEBUG
+	std::cout << "token.size() / 9 = " << tokens.size() / 9 << "\n";
+#endif
 	
 	for (unsigned j = 0; j < (tokens.size() / 9); j++) {
 		

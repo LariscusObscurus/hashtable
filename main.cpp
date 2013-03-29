@@ -21,7 +21,7 @@
 using namespace std;
 
 template <typename T>
-std::string NumberToString (T Number)
+std::string numberToString (T Number)
 {
 	std::stringstream ss;
 	ss << Number;
@@ -29,7 +29,7 @@ std::string NumberToString (T Number)
 }
 
 template <typename T>
-T StringToNumber (const std::string &Text)//Text not by const reference so that the function can be used with a 
+T stringToNumber (const std::string &Text)//Text not by const reference so that the function can be used with a 
 {                               //character array as argument
 	stringstream ss(Text);
 	T result;
@@ -67,7 +67,7 @@ int main (void)
 		<< "Input: ";
 
 		cin >> str;
-		chosen = StringToNumber<int>(str);
+		chosen = stringToNumber<int>(str);
 		switch(chosen) {
 			case ADD: {
 				if (table->add(add()))
@@ -221,7 +221,7 @@ void getMode (omode_t& mode)
 		int result = 0;
 		cout << "Input: ";
 		cin >> str;
-		result = StringToNumber<int>(str);
+		result = stringToNumber<int>(str);
 		
 		if (result == 1)
 		{
@@ -265,22 +265,22 @@ std::vector<share_t> add (void)
 	scanf("%d/%d/%d", &share.date.month, &share.date.day, &share.date.year);
 	cout << "Enter an open value: ";
 	cin >> str;
-	share.open = StringToNumber<float>(str);
+	share.open = stringToNumber<float>(str);
 	cout << "Enter an high value: ";
 	cin >> str;
-	share.high = StringToNumber<float>(str);
+	share.high = stringToNumber<float>(str);
 	cout << "Enter a low value: ";
 	cin >> str;
-	share.low = StringToNumber<float>(str);
+	share.low = stringToNumber<float>(str);
 	cout << "Enter a closing value: ";
 	cin >> str;
-	share.close = StringToNumber<float>(str);
+	share.close = stringToNumber<float>(str);
 	cout << "Enter a volume value: ";
 	cin >> str;
-	share.volume = StringToNumber<long>(str);
+	share.volume = stringToNumber<long>(str);
 	cout << "Enter a adjusted closing value: ";
 	cin >> str;
-	share.adjClose = StringToNumber<float>(str);
+	share.adjClose = stringToNumber<float>(str);
 	cout << "Finished with manual input" << endl;
 	result = std::vector<share_t>(1, share);
 	return result;
